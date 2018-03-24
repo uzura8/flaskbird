@@ -1,0 +1,27 @@
+DROP table if EXISTS member;
+CREATE TABLE `member` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL DEFAULT '',
+  `group` int(3) NOT NULL DEFAULT 1,
+  `status` tinyint(2) NOT NULL DEFAULT 0,
+  `file_name` varchar(128) DEFAULT NULL,
+  `filesize_total` int(11) NOT NULL DEFAULT 0 COMMENT 'Total file size',
+  `register_type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: normal, 1:facebook, 2:twitter, 3:google',
+  `sex` varchar(16) DEFAULT NULL,
+  `sex_public_flag` tinyint(2) NOT NULL DEFAULT 0,
+  `birthyear` int(4) DEFAULT NULL,
+  `birthyear_public_flag` tinyint(2) NOT NULL DEFAULT 0,
+  `birthdate` varchar(5) DEFAULT NULL,
+  `birthdate_public_flag` tinyint(2) NOT NULL DEFAULT 0,
+  `country` varchar(2) DEFAULT NULL COMMENT 'Save format by  ISO 3166-1 alpha-2',
+  `country_public_flag` tinyint(2) NOT NULL DEFAULT 0,
+  `login_hash` varchar(255) DEFAULT NULL,
+  `last_login` datetime DEFAULT NULL,
+  `previous_login` datetime DEFAULT NULL,
+  `invite_member_id` int(11) NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `birthdate_id` (`birthdate`,`id`),
+  UNIQUE KEY `name_UNIQUE_idx` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

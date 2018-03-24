@@ -1,0 +1,7 @@
+## setup ##
+* Load modules
+
+```
+pip install -r requirements.txt
+```
+
