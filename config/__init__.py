@@ -1,4 +1,7 @@
 class BaseConfig(object):
+    FLASKBIRD_ENV = 'local'
+
+    # instance
     SECRET_KEY = None
     SQLALCHEMY_DATABASE_URI = None
     #REDIS_URL = None

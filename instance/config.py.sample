@@ -1,3 +1,4 @@
+FLASKBIRD_ENV = 'local' # choices: 'local', 'dev', 'stg', 'prod'
 SECRET_KEY = 'secret_key'
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://username:password@localhost:3306/dbname?charset=utf8'
 #REDIS_URL = None
