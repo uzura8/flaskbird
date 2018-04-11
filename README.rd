@@ -7,3 +7,11 @@ Installation
 $ cp instance/config.py.sample instance/config.py
 $ vi instance/config.py
 ~~~~
+
+###　2. Setup db ###
+
+~~~~
+python manage.py db init
+python manage.py db migrate
+python manage.py db upgrade
+~~~~
