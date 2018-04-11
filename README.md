@@ -8,10 +8,8 @@ $ cp instance/config.py.sample instance/config.py
 $ vi instance/config.py
 ~~~~
 
-### 2. Setup db ###
+### 2. Setup ###
 
 ~~~~
-python manage.py db init
-python manage.py db migrate
-python manage.py db upgrade
+sh bin/setup.sh
 ~~~~
