@@ -1,6 +1,8 @@
 from flask import Flask
+from flask_login import LoginManager
 from flaskbird.database import init_db
 import flaskbird.models
+from flaskbird.models import Member
 
 from .views.site import site
 from .views.member import member
@@ -21,6 +23,11 @@ def create_app():
     return app
 
 app = create_app()
+login = LoginManager(app)
+
+@login.user_loader
+def load_member(id):
+    return Member.query.get(int(id))
 
 modules = [site, member]
 for module in modules:

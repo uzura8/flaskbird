@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Hi, {{ current_user.name }}!</h1>
+{% if current_user.self_introduction %}<p>{{ current_user.self_introduction }}</p>{% endif %}
+{% if current_user.last_access %}<p>Last seen on: {{ current_user.last_access }}</p>{% endif %}
+<p><a href="{{ url_for('member.edit_profile') }}">Edit your profile</a></p>
+{% endblock %}
