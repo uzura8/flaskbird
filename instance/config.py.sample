@@ -2,3 +2,14 @@ FLASKBIRD_ENV = 'local' # choices: 'local', 'dev', 'stg', 'prod'
 SECRET_KEY = 'secret_key'
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://username:password@localhost:3306/dbname?charset=utf8'
 #REDIS_URL = None
+
+IS_DEBUG_LOGGING = False
+# Operating organization email
+FBD_ADMIN_MAIL = 'admin@example.com'
+## Set if use error report mail
+#IS_SEND_ERROR_REPORT_MAIL = True
+#MAIL_SERVER = 'smtp.googlemail.com'
+#MAIL_PORT = 587
+#MAIL_USE_TLS = 1
+#MAIL_USERNAME = 'example@gmail.com'
+#MAIL_PASSWORD = 'password'
