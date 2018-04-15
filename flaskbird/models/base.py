@@ -1,5 +1,5 @@
-from flaskbird.database import db
 from datetime import datetime
+from flaskbird import db
 
 class Base(db.Model):
     __abstract__ = True

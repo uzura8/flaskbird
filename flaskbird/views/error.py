@@ -1,6 +1,8 @@
 from flask import render_template
-from flaskbird import app
-from flaskbird.database import db
+from flask import current_app
+from flaskbird import db
+
+app = current_app
 
 @app.errorhandler(404)
 def not_found_error(error):

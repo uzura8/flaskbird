@@ -1,9 +1,16 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user, login_required
 from datetime import datetime
-from flaskbird.database import db
+from flaskbird import db
+from flaskbird.email import send_password_reset_email
 from flaskbird.models import Member
-from flaskbird.forms.member import LoginForm, RegistrationForm, EditProfileForm
+from flaskbird.forms.member import(
+    LoginForm,
+    RegistrationForm,
+    ResetPasswordRequestForm,
+    EditProfileForm,
+    ResetPasswordForm,
+)
 
 member = Blueprint('member', __name__, url_prefix='/member')
 
@@ -53,6 +60,35 @@ def register():
         login_user(member)
         return redirect(url_for('member.index'))
     return render_template('member/register.html', title='Register', form=form)
+
+@member.route('/reset_password_request', methods=['GET', 'POST'])
+def reset_password_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('member.index'))
+    form = ResetPasswordRequestForm()
+    if form.validate_on_submit():
+        user = Member.query.filter_by(email=form.email.data).first()
+        if user:
+            send_password_reset_email(user)
+        flash('Check your email for the instructions to reset your password')
+        return redirect(url_for('member.login'))
+    return render_template('member/reset_password_request.html',
+                           title='Reset Password', form=form)
+
+@member.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('member.index'))
+    user = Member.verify_reset_password_token(token)
+    if not user:
+        return redirect(url_for('index'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.set_password(form.password.data)
+        db.session.commit()
+        flash('Your password has been reset.')
+        return redirect(url_for('login'))
+    return render_template('reset_password.html', form=form)
 
 @member.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
