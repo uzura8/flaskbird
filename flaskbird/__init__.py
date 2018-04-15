@@ -25,6 +25,8 @@ def create_app():
 app = create_app()
 login = LoginManager(app)
 
+from .views import error
+
 @login.user_loader
 def load_member(id):
     return Member.query.get(int(id))
