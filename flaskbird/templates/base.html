@@ -21,11 +21,11 @@
 <body>
   <div>
     Microblog:
-    <a href="{{ url_for('site.index') }}">Top</a>
+    <a href="{{ url_for('site.index') }}">{{ _('Top') }}</a>
     {% if current_user.is_authenticated %}
-    <a href="{{ url_for('member.logout') }}">Logout</a>
+    <a href="{{ url_for('member.logout') }}">{{ _('Logout') }}</a>
     {% else %}
-    <a href="{{ url_for('member.login') }}">Login</a>
+    <a href="{{ url_for('member.login') }}">{{ _('Login') }}</a>
     {% endif %}
   </div>
   <hr>

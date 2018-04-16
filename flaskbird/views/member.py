@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user, login_required
+from flask_babel import _
 from datetime import datetime
 from flaskbird import db
 from flaskbird.email import send_password_reset_email
@@ -32,7 +33,7 @@ def login():
     if form.validate_on_submit():
         member = Member.query.filter_by(name=form.name.data).first()
         if member is None or not member.check_password(form.password.data):
-            flash('Invalid name or password')
+            flash(_('Invalid name or password'))
             return redirect(url_for('member.login'))
         login_user(member, remember=form.remember_me.data)
         member.last_login = datetime.now()
@@ -56,7 +57,7 @@ def register():
         member.set_password(form.password.data)
         db.session.add(member)
         db.session.commit()
-        flash('Congratulations, you are now a registered user!')
+        flash(_('Congratulations, you are now a registered user!'))
         login_user(member)
         return redirect(url_for('member.index'))
     return render_template('member/register.html', title='Register', form=form)
@@ -70,7 +71,7 @@ def reset_password_request():
         member = Member.query.filter_by(email=form.email.data).first()
         if member:
             send_password_reset_email(member)
-        flash('Check your email for the instructions to reset your password')
+        flash(_('Check your email for the instructions to reset your password'))
         return redirect(url_for('member.login'))
     return render_template('member/reset_password_request.html',
                            title='Reset Password', form=form)
@@ -86,7 +87,7 @@ def reset_password(token):
     if form.validate_on_submit():
         member.set_password(form.password.data)
         db.session.commit()
-        flash('Your password has been reset.')
+        flash(_('Your password has been reset.'))
         return redirect(url_for('member.login'))
     return render_template('member/reset_password.html', form=form)
 
@@ -98,7 +99,7 @@ def edit_profile():
         current_user.name = form.name.data
         current_user.self_introduction = form.self_introduction.data
         db.session.commit()
-        flash('Your changes have been saved.')
+        flash(_('Your changes have been saved.'))
         return redirect(url_for('member.index'))
     elif request.method == 'GET':
         form.name.data = current_user.name

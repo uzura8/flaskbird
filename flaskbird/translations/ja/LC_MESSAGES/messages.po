@@ -1,0 +1,158 @@
+# Japanese translations for PROJECT.
+# Copyright (C) 2018 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2018-04-17 08:49+0900\n"
+"PO-Revision-Date: 2018-04-17 08:04+0900\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.5.3\n"
+
+#: flaskbird/__init__.py:33
+msgid "Please log in to access this page."
+msgstr "ログインが必要です。"
+
+#: flaskbird/forms/member.py:8 flaskbird/forms/member.py:42
+msgid "Name"
+msgstr "ユーザ名"
+
+#: flaskbird/forms/member.py:9 flaskbird/forms/member.py:16
+#: flaskbird/forms/member.py:36
+msgid "Password"
+msgstr "パスワード"
+
+#: flaskbird/forms/member.py:10
+msgid "Remember Me"
+msgstr "次回から自動的にログイン"
+
+#: flaskbird/forms/member.py:11 flaskbird/templates/member/login.html:4
+msgid "Sign In"
+msgstr "ログイン"
+
+#: flaskbird/forms/member.py:14
+msgid "Username"
+msgstr "ユーザ"
+
+#: flaskbird/forms/member.py:15 flaskbird/forms/member.py:32
+msgid "Email"
+msgstr "メールアドレス"
+
+#: flaskbird/forms/member.py:18 flaskbird/forms/member.py:38
+msgid "Repeat Password"
+msgstr "確認用パスワード"
+
+#: flaskbird/forms/member.py:19 flaskbird/templates/member/register.html:4
+msgid "Register"
+msgstr "登録する"
+
+#: flaskbird/forms/member.py:24
+msgid "Please use a different name."
+msgstr "そのユーザ名は登録できません。"
+
+#: flaskbird/forms/member.py:29
+msgid "Please use a different email address."
+msgstr "そのメールアドレスは登録できません。"
+
+#: flaskbird/forms/member.py:33 flaskbird/forms/member.py:39
+msgid "Request Password Reset"
+msgstr "送信する"
+
+#: flaskbird/forms/member.py:43
+msgid "Self-introduction"
+msgstr "自己紹介"
+
+#: flaskbird/forms/member.py:44
+msgid "Submit"
+msgstr "送信する"
+
+#: flaskbird/templates/base.html:24
+msgid "Top"
+msgstr "トップ"
+
+#: flaskbird/templates/base.html:26
+msgid "Logout"
+msgstr "ログアウト"
+
+#: flaskbird/templates/base.html:28
+msgid "Login"
+msgstr "ログイン"
+
+#: flaskbird/templates/error/404.html:4
+msgid "File Not Found"
+msgstr "見つかりません"
+
+#: flaskbird/templates/error/404.html:5
+msgid "Back"
+msgstr "戻る"
+
+#: flaskbird/templates/error/500.html:4
+msgid "An unexpected error has occurred"
+msgstr "意図しないエラーが発生しました"
+
+#: flaskbird/templates/error/500.html:5
+msgid "The administrator has been notified. Sorry for the inconvenience!"
+msgstr "ご不便をおかけして申し訳ございません。サイト管理者に通知しました。"
+
+#: flaskbird/templates/member/edit_profile.html:4
+msgid "Edit Profile"
+msgstr "プロフィール編集"
+
+#: flaskbird/templates/member/index.html:4
+#, python-format
+msgid "Hi, %(name)s!"
+msgstr "こんにちは, %(name)s!"
+
+#: flaskbird/templates/member/index.html:7
+msgid "Last seen on"
+msgstr "最終アクセス日時"
+
+#: flaskbird/templates/member/index.html:8
+msgid "Edit your profile"
+msgstr "プロフィールを編集する"
+
+#: flaskbird/templates/member/login.html:24
+msgid "Forgot Your Password?"
+msgstr "パスワードを忘れた場合はこちら"
+
+#: flaskbird/templates/member/login.html:27
+msgid "New User?"
+msgstr "新規メンバー登録"
+
+#: flaskbird/templates/member/reset_password.html:4
+msgid "Reset Your Password"
+msgstr "新しいパスワードを設定する"
+
+#: flaskbird/templates/member/reset_password_request.html:4
+msgid "Reset Password"
+msgstr "パスワード再設定手続き"
+
+#: flaskbird/views/member.py:36
+msgid "Invalid name or password"
+msgstr "ユーザ名かパスワードが正しくありません。"
+
+#: flaskbird/views/member.py:60
+msgid "Congratulations, you are now a registered user!"
+msgstr "メンバー登録が完了しました。"
+
+#: flaskbird/views/member.py:74
+msgid "Check your email for the instructions to reset your password"
+msgstr "メールに記載されているURLにアクセスし、パスワードを再設定してください。"
+
+#: flaskbird/views/member.py:90
+msgid "Your password has been reset."
+msgstr "パスワード再設定が完了しました。"
+
+#: flaskbird/views/member.py:102
+msgid "Your changes have been saved."
+msgstr "変更しました。"
+

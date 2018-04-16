@@ -9,3 +9,4 @@ Flask-WTF
 WTForms
 Flask-Mail
 PyJWT
+Flask-Babel

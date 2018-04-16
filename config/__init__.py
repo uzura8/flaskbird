@@ -23,3 +23,5 @@ class BaseConfig(object):
     MAIL_PASSWORD = None
     ADMINS = None
     IS_LOGGING_MAIL = False
+
+    LANGUAGES = ['en', 'ja']
