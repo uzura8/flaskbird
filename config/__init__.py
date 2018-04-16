@@ -22,3 +22,4 @@ class BaseConfig(object):
     MAIL_USERNAME = None
     MAIL_PASSWORD = None
     ADMINS = None
+    IS_LOGGING_MAIL = False

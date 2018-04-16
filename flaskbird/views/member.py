@@ -67,9 +67,9 @@ def reset_password_request():
         return redirect(url_for('member.index'))
     form = ResetPasswordRequestForm()
     if form.validate_on_submit():
-        user = Member.query.filter_by(email=form.email.data).first()
-        if user:
-            send_password_reset_email(user)
+        member = Member.query.filter_by(email=form.email.data).first()
+        if member:
+            send_password_reset_email(member)
         flash('Check your email for the instructions to reset your password')
         return redirect(url_for('member.login'))
     return render_template('member/reset_password_request.html',
@@ -79,16 +79,16 @@ def reset_password_request():
 def reset_password(token):
     if current_user.is_authenticated:
         return redirect(url_for('member.index'))
-    user = Member.verify_reset_password_token(token)
-    if not user:
-        return redirect(url_for('index'))
+    member = Member.verify_reset_password_token(token)
+    if not member:
+        return redirect(url_for('site.index'))
     form = ResetPasswordForm()
     if form.validate_on_submit():
-        user.set_password(form.password.data)
+        member.set_password(form.password.data)
         db.session.commit()
         flash('Your password has been reset.')
-        return redirect(url_for('login'))
-    return render_template('reset_password.html', form=form)
+        return redirect(url_for('member.login'))
+    return render_template('member/reset_password.html', form=form)
 
 @member.route('/edit_profile', methods=['GET', 'POST'])
 @login_required

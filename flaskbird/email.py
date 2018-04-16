@@ -2,6 +2,7 @@ from threading import Thread
 from flask import current_app, render_template
 from flask_mail import Message
 from flaskbird import mail
+from flaskbird.common.file import put_to_file
 
 def send_async_email(app, msg):
     with app.app_context():
@@ -13,13 +14,23 @@ def send_email(subject, sender, recipients, text_body, html_body):
     msg.html = html_body
     #mail.send(msg)
     Thread(target=send_async_email, args=(current_app, msg)).start()
+    if (current_app.config['IS_LOGGING_MAIL']):
+        debug_email(subject, sender, recipients, text_body)
 
-def send_password_reset_email(user):
-    token = user.get_reset_password_token()
+def send_password_reset_email(member):
+    token = member.get_reset_password_token()
     send_email('[Microblog] Reset Your Password',
                sender=current_app.config['FBD_ADMIN_MAIL'],
-               recipients=[user.email],
+               recipients=[member.email],
                text_body=render_template('email/reset_password.txt',
-                                         user=user, token=token),
+                                         member=member, token=token),
                html_body=render_template('email/reset_password.html',
-                                         user=user, token=token))
+                                         member=member, token=token))
+
+def debug_email(subject, sender, recipients, body):
+    data = '\n-----------------------------\n'
+    data += 'to: {}\nfrom: {}\nsubject: {}\n'.format(', '.join(recipients), sender, subject)
+    data += '---------------\n'
+    data += body
+    data += '\n-----------------------------\n'
+    put_to_file('logs/mail.log', data)
