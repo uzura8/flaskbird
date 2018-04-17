@@ -1,6 +1,6 @@
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from flaskbird import create_app, db
+from app import create_app, db
 
 app = create_app()
 migrate = Migrate(app, db)
@@ -16,7 +16,7 @@ def db_create():
 @manager.command
 def db_create_member(name, email, password):
     '''Create member'''
-    from flaskbird.models.member import Member
+    from app.models.member import Member
     member = Member(name=name, email=email, password=password)
     member.set_password(password)
     db.session.add(member)

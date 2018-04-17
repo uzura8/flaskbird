@@ -6,7 +6,7 @@ import jwt
 from flask_login import UserMixin
 from flask import current_app
 from .base import Base
-from flaskbird import db, login
+from app import db, login
 
 class Member(UserMixin, Base):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)

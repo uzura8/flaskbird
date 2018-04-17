@@ -2,10 +2,10 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_babel import _, get_locale
 from datetime import datetime
-from flaskbird import db
-from flaskbird.email import send_password_reset_email
-from flaskbird.models import Member
-from flaskbird.forms.member import(
+from app import db
+from app.email import send_password_reset_email
+from app.models import Member
+from app.forms.member import(
     LoginForm,
     RegistrationForm,
     ResetPasswordRequestForm,

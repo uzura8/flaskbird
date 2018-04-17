@@ -1,8 +1,8 @@
 from threading import Thread
 from flask import current_app, render_template
 from flask_mail import Message
-from flaskbird import mail
-from flaskbird.common.file import put_to_file
+from app import mail
+from app.common.file import put_to_file
 
 def send_async_email(app, msg):
     with app.app_context():
