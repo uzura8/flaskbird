@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, g
 from flask_login import current_user, login_user, logout_user, login_required
-from flask_babel import _
+from flask_babel import _, get_locale
 from datetime import datetime
 from flaskbird import db
 from flaskbird.email import send_password_reset_email
@@ -20,6 +20,7 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_access = datetime.now()
         db.session.commit()
+    g.locale = str(get_locale())
 
 @member.route('/')
 def index():
