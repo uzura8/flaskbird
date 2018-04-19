@@ -1,6 +1,8 @@
 import os
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
+import sys
+import importlib
 from flask import Flask, request, current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -34,11 +36,10 @@ def create_app():
     mail.init_app(app)
     babel.init_app(app)
 
-    from .views.site import site
-    from .views.member import member
-    modules = [site, member]
-    for module in modules:
-        app.register_blueprint(module)
+    app.config['FBD_MODULES'].extend(app.config['FBD_OPTIONAL_MODULES'])
+    for module_name in app.config['FBD_MODULES']:
+        m = importlib.import_module('app.' + module_name)
+        app.register_blueprint(m.bp)
 
     if app.config['IS_SEND_ERROR_REPORT_MAIL']:
         if app.config['MAIL_SERVER']:

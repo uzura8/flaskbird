@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash, g
+from flask import render_template, request, redirect, url_for, flash, g
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_babel import _, get_locale
 from datetime import datetime
 from app import db
+from app.member import bp
 from app.email import send_password_reset_email
 from app.models import Member
 from app.forms.member import(
@@ -13,20 +14,18 @@ from app.forms.member import(
     ResetPasswordForm,
 )
 
-member = Blueprint('member', __name__, url_prefix='/member')
-
-@member.before_request
+@bp.before_request
 def before_request():
     if current_user.is_authenticated:
         current_user.last_access = datetime.now()
         db.session.commit()
     g.locale = str(get_locale())
 
-@member.route('/')
+@bp.route('/')
 def index():
     return render_template("member/index.html")
 
-@member.route('/login', methods=['GET', 'POST'])
+@bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('member.index'))
@@ -43,12 +42,12 @@ def login():
         return redirect(url_for('member.index'))
     return render_template('member/login.html', title='Sign In', form=form)
 
-@member.route('/logout')
+@bp.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('member.login'))
 
-@member.route('/register', methods=['GET', 'POST'])
+@bp.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('member.index'))
@@ -63,7 +62,7 @@ def register():
         return redirect(url_for('member.index'))
     return render_template('member/register.html', title='Register', form=form)
 
-@member.route('/reset_password_request', methods=['GET', 'POST'])
+@bp.route('/reset_password_request', methods=['GET', 'POST'])
 def reset_password_request():
     if current_user.is_authenticated:
         return redirect(url_for('member.index'))
@@ -77,7 +76,7 @@ def reset_password_request():
     return render_template('member/reset_password_request.html',
                            title='Reset Password', form=form)
 
-@member.route('/reset_password/<token>', methods=['GET', 'POST'])
+@bp.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
     if current_user.is_authenticated:
         return redirect(url_for('member.index'))
@@ -92,7 +91,7 @@ def reset_password(token):
         return redirect(url_for('member.login'))
     return render_template('member/reset_password.html', form=form)
 
-@member.route('/edit_profile', methods=['GET', 'POST'])
+@bp.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
     form = EditProfileForm()

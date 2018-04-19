@@ -4,18 +4,24 @@ class BaseConfig(object):
     # instance
     SECRET_KEY = None
     SQLALCHEMY_DATABASE_URI = None
-    #REDIS_URL = None
 
     # Flask
     TESTING = False
     DEBUG = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
+    # Babel
+    LANGUAGES = ['en', 'ja']
 
     FBD_ADMIN_MAIL = 'admin@example.com'
 
+    # Flaskbird
     IS_DEBUG_LOGGING = False
     IS_SEND_ERROR_REPORT_MAIL = False
+    # Modules
+    FBD_MODULES = ['error', 'site', 'member']
+    FBD_OPTIONAL_MODULES = []
+    # Mail
     MAIL_SERVER = None
     MAIL_PORT = 25
     MAIL_USE_TLS = None
@@ -24,4 +30,3 @@ class BaseConfig(object):
     ADMINS = None
     IS_LOGGING_MAIL = False
 
-    LANGUAGES = ['en', 'ja']
