@@ -76,7 +76,4 @@ def create_app():
 def get_locale():
     return request.accept_languages.best_match(current_app.config['LANGUAGES'])
 
-import app.models
-#from .views import error
-
 

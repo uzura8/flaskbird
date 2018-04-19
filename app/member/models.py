@@ -5,7 +5,7 @@ from hashlib import md5
 import jwt
 from flask_login import UserMixin
 from flask import current_app
-from .base import Base
+from app.models.base import Base
 from app import db, login
 
 class Member(UserMixin, Base):

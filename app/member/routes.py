@@ -5,8 +5,8 @@ from datetime import datetime
 from app import db
 from app.member import bp
 from app.email import send_password_reset_email
-from app.models import Member
-from app.forms.member import(
+from app.member.models import Member
+from app.member.forms import(
     LoginForm,
     RegistrationForm,
     ResetPasswordRequestForm,
