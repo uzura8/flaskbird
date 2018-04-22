@@ -1,9 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ _('Hi, %(name)s!', name=current_user.name) }}</h1>
-<td><img src="{{ current_user.avatar(128) }}"></td>
-{% if current_user.self_introduction %}<p>{{ current_user.self_introduction }}</p>{% endif %}
-{% if current_user.last_access %}<p>{{ _('Last seen on') }}: {{ current_user.last_access }}</p>{% endif %}
-<p><a href="{{ url_for('member.edit_profile') }}">{{ _('Edit your profile') }}</a></p>
+<h1 class="title">{{ _('Hi, %(name)s!', name=current_user.name) }}</h1>
+
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src="{{ current_user.avatar(128) }}">
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong>{{ current_user.name }}</strong><br>
+        {% if current_user.self_introduction %}<p>{{ current_user.self_introduction }}</p>{% endif %}
+        {% if current_user.last_access %}<small>{{ _('Last seen on') }}: {{ current_user.last_access }}</small>{% endif %}
+      </p>
+       <p><a href="{{ url_for('member.edit_profile') }}"><i class="fas fa-edit"></i>{{ _('Edit your profile') }}</a></p>
+    </div>
+  </div>
+</article>
 {% endblock %}

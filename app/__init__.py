@@ -20,7 +20,7 @@ def create_app():
     app = Flask(
         __name__,
         instance_relative_config = True,
-        static_folder='static',
+        static_folder='statics',
         template_folder='templates')
 
     from instance.config import FLASKBIRD_ENV
