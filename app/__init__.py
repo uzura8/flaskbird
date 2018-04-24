@@ -1,7 +1,6 @@
 import os
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
-import sys
 import importlib
 from flask import Flask, request, current_app
 from flask_sqlalchemy import SQLAlchemy
@@ -75,5 +74,4 @@ def create_app():
 @babel.localeselector
 def get_locale():
     return request.accept_languages.best_match(current_app.config['LANGUAGES'])
-
 

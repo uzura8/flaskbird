@@ -1,7 +1,7 @@
+from datetime import datetime
 from flask import render_template, request, redirect, url_for, flash, g
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_babel import _, get_locale
-from datetime import datetime
 from app import db
 from app.member import bp
 from app.email import send_password_reset_email
@@ -22,6 +22,7 @@ def before_request():
     g.locale = str(get_locale())
 
 @bp.route('/')
+@login_required
 def index():
     return render_template("member/index.html")
 

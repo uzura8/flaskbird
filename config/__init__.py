@@ -1,4 +1,5 @@
 class BaseConfig(object):
+    FLASKBIRD_VERSION = '0.1.0Alpha'
     FLASKBIRD_ENV = 'local'
 
     # instance
