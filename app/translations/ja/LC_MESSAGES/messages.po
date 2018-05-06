@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-17 08:49+0900\n"
+"POT-Creation-Date: 2018-05-07 07:53+0900\n"
 "PO-Revision-Date: 2018-04-17 08:04+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -18,74 +18,109 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.5.3\n"
 
-#: app/__init__.py:33
+#: app/__init__.py:34
 msgid "Please log in to access this page."
 msgstr "ログインが必要です。"
 
-#: app/forms/member.py:8 app/forms/member.py:42
+#: app/member/forms.py:8 app/member/forms.py:42
 msgid "Name"
 msgstr "ユーザ名"
 
-#: app/forms/member.py:9 app/forms/member.py:16
-#: app/forms/member.py:36
+#: app/member/forms.py:9 app/member/forms.py:16 app/member/forms.py:36
 msgid "Password"
 msgstr "パスワード"
 
-#: app/forms/member.py:10
+#: app/member/forms.py:10
 msgid "Remember Me"
 msgstr "次回から自動的にログイン"
 
-#: app/forms/member.py:11 app/templates/member/login.html:4
+#: app/member/forms.py:11 app/templates/member/login.html:4
 msgid "Sign In"
 msgstr "ログイン"
 
-#: app/forms/member.py:14
+#: app/member/forms.py:14
 msgid "Username"
 msgstr "ユーザ"
 
-#: app/forms/member.py:15 app/forms/member.py:32
+#: app/member/forms.py:15 app/member/forms.py:32
 msgid "Email"
 msgstr "メールアドレス"
 
-#: app/forms/member.py:18 app/forms/member.py:38
+#: app/member/forms.py:18 app/member/forms.py:38
 msgid "Repeat Password"
 msgstr "確認用パスワード"
 
-#: app/forms/member.py:19 app/templates/member/register.html:4
+#: app/member/forms.py:19 app/templates/member/register.html:4
 msgid "Register"
 msgstr "登録する"
 
-#: app/forms/member.py:24
+#: app/member/forms.py:24
 msgid "Please use a different name."
 msgstr "そのユーザ名は登録できません。"
 
-#: app/forms/member.py:29
+#: app/member/forms.py:29
 msgid "Please use a different email address."
 msgstr "そのメールアドレスは登録できません。"
 
-#: app/forms/member.py:33 app/forms/member.py:39
+#: app/member/forms.py:33 app/member/forms.py:39
 msgid "Request Password Reset"
 msgstr "送信する"
 
-#: app/forms/member.py:43
+#: app/member/forms.py:43
 msgid "Self-introduction"
 msgstr "自己紹介"
 
-#: app/forms/member.py:44
+#: app/member/forms.py:44
 msgid "Submit"
 msgstr "送信する"
 
-#: app/templates/base.html:24
+#: app/member/routes.py:37
+msgid "Invalid name or password"
+msgstr "ユーザ名かパスワードが正しくありません。"
+
+#: app/member/routes.py:61
+msgid "Congratulations, you are now a registered user!"
+msgstr "メンバー登録が完了しました。"
+
+#: app/member/routes.py:75
+msgid "Check your email for the instructions to reset your password"
+msgstr "メールに記載されているURLにアクセスし、パスワードを再設定してください。"
+
+#: app/member/routes.py:91
+msgid "Your password has been reset."
+msgstr "パスワード再設定が完了しました。"
+
+#: app/member/routes.py:103
+msgid "Your changes have been saved."
+msgstr "変更しました。"
+
+#: app/templates/base.html:35
 msgid "Top"
 msgstr "トップ"
 
-#: app/templates/base.html:26
+#: app/templates/base.html:36
+msgid "Members"
+msgstr ""
+
+#: app/templates/base.html:38
+msgid "Home"
+msgstr ""
+
+#: app/templates/base.html:39
 msgid "Logout"
 msgstr "ログアウト"
 
-#: app/templates/base.html:28
+#: app/templates/base.html:41
 msgid "Login"
 msgstr "ログイン"
+
+#: app/templates/members.html:34
+msgid "Registered at"
+msgstr "登録日時"
+
+#: app/templates/members.html:36
+msgid "Last Login"
+msgstr "最終ログイン日"
 
 #: app/templates/error/404.html:4
 msgid "File Not Found"
@@ -112,19 +147,19 @@ msgstr "プロフィール編集"
 msgid "Hi, %(name)s!"
 msgstr "こんにちは, %(name)s!"
 
-#: app/templates/member/index.html:7
+#: app/templates/member/index.html:17
 msgid "Last seen on"
 msgstr "最終アクセス日時"
 
-#: app/templates/member/index.html:8
+#: app/templates/member/index.html:19
 msgid "Edit your profile"
 msgstr "プロフィールを編集する"
 
-#: app/templates/member/login.html:24
+#: app/templates/member/login.html:48
 msgid "Forgot Your Password?"
 msgstr "パスワードを忘れた場合はこちら"
 
-#: app/templates/member/login.html:27
+#: app/templates/member/login.html:49
 msgid "New User?"
 msgstr "新規メンバー登録"
 
@@ -135,24 +170,4 @@ msgstr "新しいパスワードを設定する"
 #: app/templates/member/reset_password_request.html:4
 msgid "Reset Password"
 msgstr "パスワード再設定手続き"
-
-#: app/views/member.py:36
-msgid "Invalid name or password"
-msgstr "ユーザ名かパスワードが正しくありません。"
-
-#: app/views/member.py:60
-msgid "Congratulations, you are now a registered user!"
-msgstr "メンバー登録が完了しました。"
-
-#: app/views/member.py:74
-msgid "Check your email for the instructions to reset your password"
-msgstr "メールに記載されているURLにアクセスし、パスワードを再設定してください。"
-
-#: app/views/member.py:90
-msgid "Your password has been reset."
-msgstr "パスワード再設定が完了しました。"
-
-#: app/views/member.py:102
-msgid "Your changes have been saved."
-msgstr "変更しました。"
 

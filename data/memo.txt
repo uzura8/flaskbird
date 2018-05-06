@@ -9,3 +9,34 @@ pip install -r requirements.txt
 ```
 pip freeze
 ```
+
+## Create and Update i18n files ##
+* babel.cfg の定義に基づき、翻訳対象箇所を抽出する
+
+````
+pybabel extract -F babel.cfg -k _l -o messages.pot .
+````
+
+* 指定の言語の言語ファイルを作成する
+    + 初回
+
+````
+pybabel init -i messages.pot -d app/translations -l ja creating catalog app/translations/ja/LC_MESSAGES/messages.po based on messages.pot
+````
+    + 更新時
+
+````
+pybabel update -i messages.pot -d app/translations
+````
+
+* 言語ファイルを編集する
+
+````
+vim app/translations/ja/LC_MESSAGES/messages.po
+````
+
+* コンパイルする
+
+````
+pybabel compile -d app/translations compiling catalog app/translations/ja/LC_MESSAGES/messages.po to app/translations/ja/LC_MESSAGES/messages.mo
+````
