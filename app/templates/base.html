@@ -12,10 +12,11 @@
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
-    <link rel="stylesheet" href="{{ url_static('css/bulma_custom.css') }}">
+    <link rel="stylesheet" href="{{ url_static('css/common.css') }}">
+    {% block post_header %}{% endblock %}
     <link rel="shortcut icon" href="">
 </head>
-<body>
+<body data-locale="{{ g.locale }}">
 <header>
 <nav class="navbar is-fixed-top is-light">
   <div class="container">
@@ -45,9 +46,9 @@
 </nav>
 </header>
 
-<main class="container is-fluid">
+<section class="container is-fluid">
 <div class="columns">
-<div class="column">
+<div class="column is-9">
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 <article class="message is-success">
@@ -66,7 +67,7 @@
 <div class="submenu column is-3">
 </div>
 </div>
-</main>
+</section>
 
 <footer class="footer">
 <div class="container">
@@ -79,26 +80,13 @@
 </div>
 </footer>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  // Get all "navbar-burger" elements
-  var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-  // Check if there are any navbar burgers
-  if ($navbarBurgers.length > 0) {
-    // Add a click event on each of them
-    $navbarBurgers.forEach(function ($el) {
-      $el.addEventListener('click', function () {
-        // Get the target from the "data-target" attribute
-        var target = $el.dataset.target;
-        var $target = document.getElementById(target);
-        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
-        $el.classList.toggle('is-active');
-        $target.classList.toggle('is-active');
-      });
-    });
-  }
-});
-</script>
+<script src="{{ url_static('js/vendor.js') }}"></script>
+<script src="{{ url_static('js/common.js') }}"></script>
+{#
+{% if g.locale != 'en' %}
+<script src="{{ url_static('js/moment-' + g.locale + '.min.js') }}"></script>
+{% endif %}
+#}
 {% block footer_script %}{% endblock %}
 </body>
 </html>

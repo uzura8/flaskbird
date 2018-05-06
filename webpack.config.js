@@ -7,46 +7,59 @@ const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 
 module.exports = [
-  //{
-  //  //entry: {
-  //  //  //basic: path.join(root, 'src/js/basic.js'),
-  //  //  //component: path.join(root, 'src/js/component.js'),
-  //  //  //vendor: ['jquery', 'tether', 'bootstrap'],
-  //  //  //app: path.join(root, 'src/js/app.js'),
-  //  //},
-  //  //output: {
-  //  //  path: path.join(root, 'public/assets/js'),
-  //  //  filename: '[name].js'
-  //  //},
-  //  resolve: {
-  //    extensions: ['.webpack.js', '.web.js', '.js'],
-  //    alias: {
-  //      'vue$': 'vue/dist/vue.common.js',
-  //      'vue-router$': 'vue-router/dist/vue-router.common.js'
-  //    }
-  //  },
-  //  plugins: [
-  //    // この設定をするとvendorの中身は他のentryでは読み込まれない
-  //    new webpack.optimize.CommonsChunkPlugin('vendor'),
-  //    // webpack.ProvidePluginを使用すると、指定した変数名でライブラリを使用できるようになる
-  //    new webpack.ProvidePlugin({
-  //      $: 'jquery',
-  //      jQuery: 'jquery',
-  //      'window.jQuery': 'jquery'
-  //    }),
-  //    new webpack.ProvidePlugin({
-  //      'window.Tether': 'tether',
-  //      Tether: "tether",
-  //    }),
-  //    //new webpack.ProvidePlugin({
-  //    //    moment: 'moment'
-  //    //})
-  //  ],
-  //  devtool: 'source-map',
-  //},
   {
     entry: {
-      bulma_custom: path.join(root, 'src/scss/bulma_custom.scss'),
+      common: path.join(root, 'src/js/common.js'),
+      members: path.join(root, 'src/js/members.js'),
+      //vendor: ['jquery', 'tether', 'bootstrap'],
+      //vendor: ['moment'],
+    },
+    output: {
+      path: path.join(root, 'app/statics/js'),
+      filename: '[name].js'
+    },
+    optimization: {
+      splitChunks: {
+        name: 'vendor',
+        chunks: 'initial',
+      }
+    },
+    resolve: {
+      extensions: ['.webpack.js', '.web.js', '.js'],
+      alias: {
+        'vue$': 'vue/dist/vue.common.js',
+        'vue-router$': 'vue-router/dist/vue-router.common.js'
+      }
+    },
+    module: {
+      rules: [
+        {
+          test: /\.css/,
+          use: [
+            'style-loader',
+            {loader: 'css-loader', options: {url: false}},
+          ],
+        },
+      ]
+    },
+    plugins: [
+      // Ignore all locale files of moment.js
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      //// webpack.ProvidePluginを使用すると、指定した変数名でライブラリを使用できるようになる
+      //new webpack.ProvidePlugin({
+      //  $: 'jquery',
+      //  jQuery: 'jquery',
+      //  'window.jQuery': 'jquery'
+      //}),
+      //new webpack.ProvidePlugin({
+      //  moment: 'moment'
+      //})
+    ],
+    devtool: 'source-map',
+  },
+  {
+    entry: {
+      common: path.join(root, 'src/scss/common.scss'),
     },
     output: {
       path: path.join(root, 'app/statics/css'),
@@ -83,7 +96,7 @@ module.exports = [
       }]
     },
     plugins: [
-      new ExtractTextPlugin('bulma_custom.css'),
+      new ExtractTextPlugin('common.css'),
     ],
     devtool: 'source-map',
     resolve: {

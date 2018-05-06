@@ -1,5 +1,10 @@
-from flask import render_template
+from flask import render_template, g
+from flask_babel import _, get_locale
 from app.site import bp
+
+@bp.before_request
+def before_request():
+    g.locale = str(get_locale())
 
 @bp.route('/')
 def index():

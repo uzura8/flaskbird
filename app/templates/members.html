@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="app">
+  <h1 class="title">Members</h1>
+  <router-view></router-view>
+</div>
+{% endblock %}
+
+{% block footer_script %}
+<script type="x-template" id="member-list">
+<div>
+  <b-loading :is-full-page="true" :active.sync="isLoading"></b-loading>
+  <div v-if="error" class="error">
+    [[ error ]]
+  </div>
+  <div class="p-member-list">
+    <article class="media" v-for="member in members" :key="member.id">
+      <figure class="media-left">
+        <p class="image is-64x64">
+          <router-link :to="'/members/' + member.id"><img :src="member._links.avatar"></router-link>
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong><router-link :to="'/members/' + member.id">[[ member.name ]]</router-link></strong>
+            <br>
+            [[ member.self_introduction ]]
+          </p>
+        </div>
+        <aside>
+          <dl class="is-size-7 c-horizontal">
+            <dt>{{ _('Registered at') }}</dt>
+              <dd>[[ member.created_at | moment ]]</dd>
+            <dt>{{ _('Last Login') }}</dt>
+              <dd>[[ member.last_login | moment ]]</dd>
+          </dl>
+        </aside>
+      </div>
+    </article>
+  </div>
+  <router-view></router-view>
+</div>
+</script>
+
+<script type="x-template" id="member-detail">
+<div class="member"> 
+  <h2>ユーザーIDは [[ $route.params.memberId ]] です。</h2>
+  <router-link :to="'/members/' + $route.params.memberId + '/profile'">ユーザーのプロフィールページを見る</router-link>
+  <router-link :to="'/members/' + $route.params.memberId + '/posts'">ユーザーの投稿ページを見る</router-link>
+  <router-view></router-view>
+</div>
+</script>
+<script src="{{ url_static('js/members.js')  }}"></script>
+{% endblock %}

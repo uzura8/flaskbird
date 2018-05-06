@@ -9,4 +9,4 @@ messages.pot
 
 package-lock.json
 /node_modules/*
-/app/statics/css/*.map
+/app/statics/*/*.map

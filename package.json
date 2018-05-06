@@ -37,6 +37,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "buefy": "^0.6.5",
+    "moment": "^2.22.1",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1"
   }

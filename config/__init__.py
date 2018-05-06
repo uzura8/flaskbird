@@ -20,7 +20,7 @@ class BaseConfig(object):
     IS_DEBUG_LOGGING = False
     IS_SEND_ERROR_REPORT_MAIL = False
     # Modules
-    FBD_MODULES = ['error', 'site', 'member']
+    FBD_MODULES = ['error', 'site', 'member', 'api']
     FBD_OPTIONAL_MODULES = []
     # Mail
     MAIL_SERVER = None

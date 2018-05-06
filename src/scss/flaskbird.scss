@@ -1,0 +1,14 @@
+ul.c-horizontal,
+dl.c-horizontal {
+  li, dt, dd {
+    display: inline;
+    list-style-type: none;
+  }
+  li, dt, dd {
+    padding-right: 1rem;
+  }
+  dt {
+    font-weight: bold;
+    padding-right: 0.25rem;
+  }
+}
