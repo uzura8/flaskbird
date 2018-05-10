@@ -21,12 +21,12 @@ pybabel extract -F babel.cfg -k _l -o messages.pot .
     + 初回
 
 ````
-pybabel init -i messages.pot -d app/translations -l ja creating catalog app/translations/ja/LC_MESSAGES/messages.po based on messages.pot
+pybabel init -i messages.pot -d app/translations -l ja creating catalog app/translations/ja/LC_MESSAGES/messages.po based on var/tmp/messages.pot
 ````
     + 更新時
 
 ````
-pybabel update -i messages.pot -d app/translations
+pybabel update -i var/tmp/messages.pot -d app/translations
 ````
 
 * 言語ファイルを編集する
@@ -40,3 +40,20 @@ vim app/translations/ja/LC_MESSAGES/messages.po
 ````
 pybabel compile -d app/translations compiling catalog app/translations/ja/LC_MESSAGES/messages.po to app/translations/ja/LC_MESSAGES/messages.mo
 ````
+
+* Convert to JavaScript i18n file
+
+````
+pojson app/translations/ja/LC_MESSAGES/messages.po > app/statics/js/translations/ja/messages.json
+````
+
+## Create i18n files for Vue-i18n ##
+
+* Convert to JavaScript i18n file
+    + If you added lang files other than 'ja', you need to exec commmand more for added langs as same format file name.
+
+````
+pojson -e utf-8 app/translations/ja/LC_MESSAGES/messages.po > var/tmp/translations/ja-message.json
+python manage.py convert_translate_json var/tmp/translations/ja-message.json src/js/translations/
+````
+

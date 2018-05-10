@@ -24,6 +24,13 @@ def db_create_member(name, email, password):
     print('Create member' + name)
 
 @manager.command
+def convert_translate_json (input_file, output_dir):
+    from app.common.vuei18n_jsonformatter import VueI18nJsonFormatter
+    '''Convert json file created by pojson to vue-i18n format'''
+    formatter = VueI18nJsonFormatter(input_file, output_dir);
+    formatter.execute()
+
+@manager.command
 def bird():
     import random
     ''' Some birds sing '''

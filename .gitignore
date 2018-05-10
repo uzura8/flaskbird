@@ -4,9 +4,9 @@ __pycache__
 instance/
 /migrations/
 /logs/*
-
-messages.pot
+/var/*
 
 package-lock.json
 /node_modules/*
 /app/statics/*/*.map
+
