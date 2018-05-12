@@ -20,10 +20,10 @@ class VueI18nJsonFormatter():
     def format(self):
         dict_new = {}
         for key, values in self.json_dict.items():
-            if not len(key) or len(values) < 2:
+            if len(key) == 0 or len(values) < 2:
                 continue
             dict_new[key] = values[1]
-        self.formatted[self.group] = dict_new
+        self.formatted = {self.group: dict_new}
 
     def set_prop(self):
         input_filename = os.path.basename(self.input_file)
@@ -41,7 +41,7 @@ class VueI18nJsonFormatter():
 
     def output(self):
         with open(self.output_file, 'w') as f:
-            json.dump(self.json_dict, f,
+            json.dump(self.formatted, f,
                     indent=self.json_format['indent'],
                     sort_keys=self.json_format['sort_keys'],
                     separators=self.json_format['separators'])

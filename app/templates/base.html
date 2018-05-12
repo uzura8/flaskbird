@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="has-navbar-fixed-top">
+<html lang="{{ g.locale }}" class="has-navbar-fixed-top">
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   {% if title %}
@@ -16,7 +16,6 @@
     {% block post_header %}{% endblock %}
     <link rel="shortcut icon" href="">
 </head>
-<body data-locale="{{ g.locale }}">
 <header>
 <nav class="navbar is-fixed-top is-light">
   <div class="container">

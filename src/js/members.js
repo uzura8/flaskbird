@@ -1,30 +1,41 @@
+var Vue = require('vue');
+var VueRouter = require('vue-router');
+Vue.use(VueRouter);
+
+var locale = document.getElementsByTagName('html')[0].getAttribute('lang');
+import VueI18n from 'vue-i18n';
+Vue.use(VueI18n);
+var messages = {
+  ja: require('./translations/ja-message.json'),
+};
+var i18n = new VueI18n({
+  locale: locale,
+  fallbackLocale: 'en',
+  messages
+});
+
+var moment = require('moment');
+require('moment/locale/ja');
+moment.locale(locale);
+////Vue.use(require('vue-moment'));
+Vue.filter('moment', function (date) {
+  return moment(date).format('LLL');
+});
+
+var Buefy = require('buefy');
+//Vue.use(Buefy.default);
+Vue.component(Buefy.default.Loading.name, Buefy.default.Loading);
+
 // axios を require してインスタンスを生成する
 const axiosBase = require('axios');
 const axios = axiosBase.create({
   baseURL: '/',
   headers: {
     'ContentType': 'application/json',
-    'X-Requested-With': 'XMLHttpRequest'
+    'X-Requested-With': 'XMLHttpRequest',
+    'Accept-Language': locale
   },
   responseType: 'json'
-});
-
-var Vue = require('vue');
-var VueRouter = require('vue-router');
-Vue.use(VueRouter);
-var Buefy = require('buefy');
-//Vue.use(Buefy.default);
-Vue.component(Buefy.default.Loading.name, Buefy.default.Loading);
-
-var moment = require('moment');
-require('moment/locale/ja');
-var locale = document.getElementsByTagName('body')[0].getAttribute('data-locale');
-moment.locale(locale);
-//moment.locale('{{ g.locale }}');
-
-////Vue.use(require('vue-moment'));
-Vue.filter('moment', function (date) {
-  return moment(date).format('LLL');
 });
 
 var uriPrefix = '/members';
@@ -298,6 +309,7 @@ var router = new VueRouter({
 // ルーターのインスタンスをrootとなるVueインスタンスに渡します
 var app = new Vue({
   router: router,
+  i18n: i18n,
   methods: {
     //hideNaveMenu2: function () {
     //  $('#header-nav').collapse('hide')

@@ -1,160 +1,40 @@
 {
-    "": {
-        "Content-Transfer-Encoding": "8bit",
-        "Content-Type": "text/plain; charset=utf-8",
-        "Generated-By": "Babel 2.5.3",
-        "Language": "ja",
-        "Language-Team": "ja <LL@li.org>",
-        "Last-Translator": "FULL NAME <EMAIL@ADDRESS>",
-        "MIME-Version": "1.0",
-        "PO-Revision-Date": "2018-04-17 08:04+0900",
-        "POT-Creation-Date": "2018-05-07 07:53+0900",
-        "Plural-Forms": "nplurals=1; plural=0",
-        "Project-Id-Version": "PROJECT VERSION",
-        "Report-Msgid-Bugs-To": "EMAIL@ADDRESS"
-    },
-    "An unexpected error has occurred": [
-        null,
-        "\u610f\u56f3\u3057\u306a\u3044\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f"
-    ],
-    "Back": [
-        null,
-        "\u623b\u308b"
-    ],
-    "Check your email for the instructions to reset your password": [
-        null,
-        "\u30e1\u30fc\u30eb\u306b\u8a18\u8f09\u3055\u308c\u3066\u3044\u308bURL\u306b\u30a2\u30af\u30bb\u30b9\u3057\u3001\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u518d\u8a2d\u5b9a\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
-    ],
-    "Congratulations, you are now a registered user!": [
-        null,
-        "\u30e1\u30f3\u30d0\u30fc\u767b\u9332\u304c\u5b8c\u4e86\u3057\u307e\u3057\u305f\u3002"
-    ],
-    "Edit Profile": [
-        null,
-        "\u30d7\u30ed\u30d5\u30a3\u30fc\u30eb\u7de8\u96c6"
-    ],
-    "Edit your profile": [
-        null,
-        "\u30d7\u30ed\u30d5\u30a3\u30fc\u30eb\u3092\u7de8\u96c6\u3059\u308b"
-    ],
-    "Email": [
-        null,
-        "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9"
-    ],
-    "File Not Found": [
-        null,
-        "\u898b\u3064\u304b\u308a\u307e\u305b\u3093"
-    ],
-    "Forgot Your Password?": [
-        null,
-        "\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u5fd8\u308c\u305f\u5834\u5408\u306f\u3053\u3061\u3089"
-    ],
-    "Hi, %(name)s!": [
-        null,
-        "\u3053\u3093\u306b\u3061\u306f, %(name)s!"
-    ],
-    "Invalid name or password": [
-        null,
-        "\u30e6\u30fc\u30b6\u540d\u304b\u30d1\u30b9\u30ef\u30fc\u30c9\u304c\u6b63\u3057\u304f\u3042\u308a\u307e\u305b\u3093\u3002"
-    ],
-    "Last Login": [
-        null,
-        "\u6700\u7d42\u30ed\u30b0\u30a4\u30f3\u65e5"
-    ],
-    "Last seen on": [
-        null,
-        "\u6700\u7d42\u30a2\u30af\u30bb\u30b9\u65e5\u6642"
-    ],
-    "Login": [
-        null,
-        "\u30ed\u30b0\u30a4\u30f3"
-    ],
-    "Logout": [
-        null,
-        "\u30ed\u30b0\u30a2\u30a6\u30c8"
-    ],
-    "Name": [
-        null,
-        "\u30e6\u30fc\u30b6\u540d"
-    ],
-    "New User?": [
-        null,
-        "\u65b0\u898f\u30e1\u30f3\u30d0\u30fc\u767b\u9332"
-    ],
-    "Password": [
-        null,
-        "\u30d1\u30b9\u30ef\u30fc\u30c9"
-    ],
-    "Please log in to access this page.": [
-        null,
-        "\u30ed\u30b0\u30a4\u30f3\u304c\u5fc5\u8981\u3067\u3059\u3002"
-    ],
-    "Please use a different email address.": [
-        null,
-        "\u305d\u306e\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9\u306f\u767b\u9332\u3067\u304d\u307e\u305b\u3093\u3002"
-    ],
-    "Please use a different name.": [
-        null,
-        "\u305d\u306e\u30e6\u30fc\u30b6\u540d\u306f\u767b\u9332\u3067\u304d\u307e\u305b\u3093\u3002"
-    ],
-    "Register": [
-        null,
-        "\u767b\u9332\u3059\u308b"
-    ],
-    "Registered at": [
-        null,
-        "\u767b\u9332\u65e5\u6642"
-    ],
-    "Remember Me": [
-        null,
-        "\u6b21\u56de\u304b\u3089\u81ea\u52d5\u7684\u306b\u30ed\u30b0\u30a4\u30f3"
-    ],
-    "Repeat Password": [
-        null,
-        "\u78ba\u8a8d\u7528\u30d1\u30b9\u30ef\u30fc\u30c9"
-    ],
-    "Request Password Reset": [
-        null,
-        "\u9001\u4fe1\u3059\u308b"
-    ],
-    "Reset Password": [
-        null,
-        "\u30d1\u30b9\u30ef\u30fc\u30c9\u518d\u8a2d\u5b9a\u624b\u7d9a\u304d"
-    ],
-    "Reset Your Password": [
-        null,
-        "\u65b0\u3057\u3044\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u8a2d\u5b9a\u3059\u308b"
-    ],
-    "Self-introduction": [
-        null,
-        "\u81ea\u5df1\u7d39\u4ecb"
-    ],
-    "Sign In": [
-        null,
-        "\u30ed\u30b0\u30a4\u30f3"
-    ],
-    "Submit": [
-        null,
-        "\u9001\u4fe1\u3059\u308b"
-    ],
-    "The administrator has been notified. Sorry for the inconvenience!": [
-        null,
-        "\u3054\u4e0d\u4fbf\u3092\u304a\u304b\u3051\u3057\u3066\u7533\u3057\u8a33\u3054\u3056\u3044\u307e\u305b\u3093\u3002\u30b5\u30a4\u30c8\u7ba1\u7406\u8005\u306b\u901a\u77e5\u3057\u307e\u3057\u305f\u3002"
-    ],
-    "Top": [
-        null,
-        "\u30c8\u30c3\u30d7"
-    ],
-    "Username": [
-        null,
-        "\u30e6\u30fc\u30b6"
-    ],
-    "Your changes have been saved.": [
-        null,
-        "\u5909\u66f4\u3057\u307e\u3057\u305f\u3002"
-    ],
-    "Your password has been reset.": [
-        null,
-        "\u30d1\u30b9\u30ef\u30fc\u30c9\u518d\u8a2d\u5b9a\u304c\u5b8c\u4e86\u3057\u307e\u3057\u305f\u3002"
-    ]
+    "message": {
+        "An unexpected error has occurred": "\u610f\u56f3\u3057\u306a\u3044\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f",
+        "Back": "\u623b\u308b",
+        "Check your email for the instructions to reset your password": "\u30e1\u30fc\u30eb\u306b\u8a18\u8f09\u3055\u308c\u3066\u3044\u308bURL\u306b\u30a2\u30af\u30bb\u30b9\u3057\u3001\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u518d\u8a2d\u5b9a\u3057\u3066\u304f\u3060\u3055\u3044\u3002",
+        "Congratulations, you are now a registered user!": "\u30e1\u30f3\u30d0\u30fc\u767b\u9332\u304c\u5b8c\u4e86\u3057\u307e\u3057\u305f\u3002",
+        "Edit Profile": "\u30d7\u30ed\u30d5\u30a3\u30fc\u30eb\u7de8\u96c6",
+        "Edit your profile": "\u30d7\u30ed\u30d5\u30a3\u30fc\u30eb\u3092\u7de8\u96c6\u3059\u308b",
+        "Email": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+        "File Not Found": "\u898b\u3064\u304b\u308a\u307e\u305b\u3093",
+        "Forgot Your Password?": "\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u5fd8\u308c\u305f\u5834\u5408\u306f\u3053\u3061\u3089",
+        "Hi, %(name)s!": "\u3053\u3093\u306b\u3061\u306f, %(name)s!",
+        "Invalid name or password": "\u30e6\u30fc\u30b6\u540d\u304b\u30d1\u30b9\u30ef\u30fc\u30c9\u304c\u6b63\u3057\u304f\u3042\u308a\u307e\u305b\u3093\u3002",
+        "Last Login": "\u6700\u7d42\u30ed\u30b0\u30a4\u30f3\u65e5",
+        "Last seen on": "\u6700\u7d42\u30a2\u30af\u30bb\u30b9\u65e5\u6642",
+        "Login": "\u30ed\u30b0\u30a4\u30f3",
+        "Logout": "\u30ed\u30b0\u30a2\u30a6\u30c8",
+        "Name": "\u30e6\u30fc\u30b6\u540d",
+        "New User?": "\u65b0\u898f\u30e1\u30f3\u30d0\u30fc\u767b\u9332",
+        "Password": "\u30d1\u30b9\u30ef\u30fc\u30c9",
+        "Please log in to access this page.": "\u30ed\u30b0\u30a4\u30f3\u304c\u5fc5\u8981\u3067\u3059\u3002",
+        "Please use a different email address.": "\u305d\u306e\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9\u306f\u767b\u9332\u3067\u304d\u307e\u305b\u3093\u3002",
+        "Please use a different name.": "\u305d\u306e\u30e6\u30fc\u30b6\u540d\u306f\u767b\u9332\u3067\u304d\u307e\u305b\u3093\u3002",
+        "Register": "\u767b\u9332\u3059\u308b",
+        "Registered at": "\u767b\u9332\u65e5\u6642",
+        "Remember Me": "\u6b21\u56de\u304b\u3089\u81ea\u52d5\u7684\u306b\u30ed\u30b0\u30a4\u30f3",
+        "Repeat Password": "\u78ba\u8a8d\u7528\u30d1\u30b9\u30ef\u30fc\u30c9",
+        "Request Password Reset": "\u9001\u4fe1\u3059\u308b",
+        "Reset Password": "\u30d1\u30b9\u30ef\u30fc\u30c9\u518d\u8a2d\u5b9a\u624b\u7d9a\u304d",
+        "Reset Your Password": "\u65b0\u3057\u3044\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u8a2d\u5b9a\u3059\u308b",
+        "Self-introduction": "\u81ea\u5df1\u7d39\u4ecb",
+        "Sign In": "\u30ed\u30b0\u30a4\u30f3",
+        "Submit": "\u9001\u4fe1\u3059\u308b",
+        "The administrator has been notified. Sorry for the inconvenience!": "\u3054\u4e0d\u4fbf\u3092\u304a\u304b\u3051\u3057\u3066\u7533\u3057\u8a33\u3054\u3056\u3044\u307e\u305b\u3093\u3002\u30b5\u30a4\u30c8\u7ba1\u7406\u8005\u306b\u901a\u77e5\u3057\u307e\u3057\u305f\u3002",
+        "Top": "\u30c8\u30c3\u30d7",
+        "Username": "\u30e6\u30fc\u30b6",
+        "Your changes have been saved.": "\u5909\u66f4\u3057\u307e\u3057\u305f\u3002",
+        "Your password has been reset.": "\u30d1\u30b9\u30ef\u30fc\u30c9\u518d\u8a2d\u5b9a\u304c\u5b8c\u4e86\u3057\u307e\u3057\u305f\u3002"
+    }
 }
