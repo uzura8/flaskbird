@@ -15,6 +15,10 @@ class VueI18nJsonFormatter():
         self.lang = ''
         self.group = ''
 
+        self.init_en = False
+        if 'init_en' in option:
+            self.init_en = option['init_en']
+
     def execute(self):
         self.set_prop()
         self.load()
@@ -27,14 +31,17 @@ class VueI18nJsonFormatter():
             if len(key) == 0 or len(values) < 2:
                 continue
             key = self.conv_delimitter(key)
-            value = self.conv_delimitter(values[1])
+            if self.init_en:
+                value = key
+            else:
+                value = self.conv_delimitter(values[1])
             dict_new[key] = value
         self.formatted = {self.group: dict_new}
 
     def set_prop(self):
         input_filename = os.path.basename(self.input_file)
         m = re.search('^([a-z_]+)-([a-z_]+)\.json$', input_filename)
-        self.lang = m.group(1)
+        self.lang = m.group(1) if not self.init_en else 'en'
         self.group = m.group(2)
         self.output_file = '{}/{}-{}.json'.format(self.output_dir,
                                                 self.lang, self.group)

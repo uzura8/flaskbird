@@ -6,6 +6,7 @@ var locale = document.getElementsByTagName('html')[0].getAttribute('lang');
 import VueI18n from 'vue-i18n';
 Vue.use(VueI18n);
 var messages = {
+  en: require('./translations/en-message.json'),
   ja: require('./translations/ja-message.json'),
 };
 var i18n = new VueI18n({

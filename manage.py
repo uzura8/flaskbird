@@ -31,8 +31,15 @@ def convert_translate_json (input_file, output_dir):
     formatter.execute()
 
 @manager.command
-def bird():
-    import random
+def generate_translate_json_en (input_file, output_dir):
+    from app.common.vuei18n_jsonformatter import VueI18nJsonFormatter
+    '''Generate en json file from pojson of other lang'''
+    formatter = VueI18nJsonFormatter(input_file, output_dir,
+                                        {'init_en':True})
+    formatter.execute()
+
+@manager.option('-b', '--bird', help='Target bird')
+def bird(bird=''):
     ''' Some birds sing '''
     sounds = {
         'duck': 'quack',
@@ -43,7 +50,11 @@ def bird():
         'chick': 'cheep',
         'owl': 'hoot',
     }
-    bird, sound = random.choice(list(sounds.items()))
+    if bird:
+        sound = sounds[bird]
+    else:
+        import random
+        bird, sound = random.choice(list(sounds.items()))
     print('{} sings "{}"'.format(bird, sound))
 
 

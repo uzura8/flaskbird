@@ -55,5 +55,6 @@ pojson app/translations/ja/LC_MESSAGES/messages.po > app/statics/js/translations
 ````
 pojson -e utf-8 app/translations/ja/LC_MESSAGES/messages.po > var/tmp/translations/ja-message.json
 python manage.py convert_translate_json var/tmp/translations/ja-message.json src/js/translations/
+python manage.py generate_translate_json_en var/tmp/translations/ja-message.json src/js/translations/
 ````
 
