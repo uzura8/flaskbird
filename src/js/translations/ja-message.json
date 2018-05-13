@@ -9,12 +9,14 @@
         "Email": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
         "File Not Found": "\u898b\u3064\u304b\u308a\u307e\u305b\u3093",
         "Forgot Your Password?": "\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u5fd8\u308c\u305f\u5834\u5408\u306f\u3053\u3061\u3089",
-        "Hi, %(name)s!": "\u3053\u3093\u306b\u3061\u306f, %(name)s!",
+        "Hi, {name}!": "\u3053\u3093\u306b\u3061\u306f, {name}!",
+        "Home": "\u30db\u30fc\u30e0",
         "Invalid name or password": "\u30e6\u30fc\u30b6\u540d\u304b\u30d1\u30b9\u30ef\u30fc\u30c9\u304c\u6b63\u3057\u304f\u3042\u308a\u307e\u305b\u3093\u3002",
         "Last Login": "\u6700\u7d42\u30ed\u30b0\u30a4\u30f3\u65e5",
         "Last seen on": "\u6700\u7d42\u30a2\u30af\u30bb\u30b9\u65e5\u6642",
         "Login": "\u30ed\u30b0\u30a4\u30f3",
         "Logout": "\u30ed\u30b0\u30a2\u30a6\u30c8",
+        "Members": "\u30e1\u30f3\u30d0\u30fc\u4e00\u89a7",
         "Name": "\u30e6\u30fc\u30b6\u540d",
         "New User?": "\u65b0\u898f\u30e1\u30f3\u30d0\u30fc\u767b\u9332",
         "Password": "\u30d1\u30b9\u30ef\u30fc\u30c9",
@@ -35,6 +37,7 @@
         "Top": "\u30c8\u30c3\u30d7",
         "Username": "\u30e6\u30fc\u30b6",
         "Your changes have been saved.": "\u5909\u66f4\u3057\u307e\u3057\u305f\u3002",
-        "Your password has been reset.": "\u30d1\u30b9\u30ef\u30fc\u30c9\u518d\u8a2d\u5b9a\u304c\u5b8c\u4e86\u3057\u307e\u3057\u305f\u3002"
+        "Your password has been reset.": "\u30d1\u30b9\u30ef\u30fc\u30c9\u518d\u8a2d\u5b9a\u304c\u5b8c\u4e86\u3057\u307e\u3057\u305f\u3002",
+        "{name}'s Page": "{name} \u3055\u3093\u306e\u30da\u30fc\u30b8\u3067\u3059"
     }
 }

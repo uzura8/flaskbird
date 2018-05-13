@@ -7,7 +7,11 @@ class VueI18nJsonFormatter():
         self.output_file = ''
         self.json_dict = {}
         self.formatted = {}
-        self.json_format = {'indent':4, 'sort_keys':True, 'separators':(',', ': ')}
+        self.json_format = {
+            'indent': 4,
+            'sort_keys': True,
+            'separators':(',', ': ')
+        }
         self.lang = ''
         self.group = ''
 
@@ -22,7 +26,9 @@ class VueI18nJsonFormatter():
         for key, values in self.json_dict.items():
             if len(key) == 0 or len(values) < 2:
                 continue
-            dict_new[key] = values[1]
+            key = self.conv_delimitter(key)
+            value = self.conv_delimitter(values[1])
+            dict_new[key] = value
         self.formatted = {self.group: dict_new}
 
     def set_prop(self):
@@ -30,7 +36,12 @@ class VueI18nJsonFormatter():
         m = re.search('^([a-z_]+)-([a-z_]+)\.json$', input_filename)
         self.lang = m.group(1)
         self.group = m.group(2)
-        self.output_file =  '{}/{}-{}.json'.format(self.output_dir, self.lang, self.group)
+        self.output_file = '{}/{}-{}.json'.format(self.output_dir,
+                                                self.lang, self.group)
+
+    @staticmethod
+    def conv_delimitter(src):
+        return re.sub(r'%\((\w+)\)s', r'{\1}', src)
 
     def load(self):
         with open(self.input_file, 'r') as f:

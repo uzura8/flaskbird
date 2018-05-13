@@ -2,7 +2,6 @@
 
 {% block content %}
 <div id="app">
-  <h1 class="title">Members</h1>
   <router-view></router-view>
 </div>
 {% endblock %}
@@ -11,6 +10,7 @@
 <script type="x-template" id="member-list">
 <div>
   <b-loading :is-full-page="true" :active.sync="isLoading"></b-loading>
+  <h1 class="title">[[ $t("message['Members']") ]]</h1>
   <div v-if="error" class="error">
     [[ error ]]
   </div>
@@ -46,7 +46,7 @@
 
 <script type="x-template" id="member-detail">
 <div class="member"> 
-  <h2>ユーザーIDは [[ $route.params.memberId ]] です。</h2>
+  <h1 class="title">[[ $t('message["{name}\'s Page"]', {name: member.name}) ]]</h1>
   <router-link :to="'/members/' + $route.params.memberId + '/profile'">ユーザーのプロフィールページを見る</router-link>
   <router-link :to="'/members/' + $route.params.memberId + '/posts'">ユーザーの投稿ページを見る</router-link>
   <router-view></router-view>

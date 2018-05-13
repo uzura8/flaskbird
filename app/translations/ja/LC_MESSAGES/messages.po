@@ -100,11 +100,11 @@ msgstr "トップ"
 
 #: app/templates/base.html:36
 msgid "Members"
-msgstr ""
+msgstr "メンバー一覧"
 
 #: app/templates/base.html:38
 msgid "Home"
-msgstr ""
+msgstr "ホーム"
 
 #: app/templates/base.html:39
 msgid "Logout"
@@ -146,6 +146,10 @@ msgstr "プロフィール編集"
 #, python-format
 msgid "Hi, %(name)s!"
 msgstr "こんにちは, %(name)s!"
+
+#, python-format
+msgid "%(name)s's Page"
+msgstr "%(name)s さんのページです"
 
 #: app/templates/member/index.html:17
 msgid "Last seen on"
