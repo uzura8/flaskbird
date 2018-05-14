@@ -1,42 +1,42 @@
-{% extends "base.html" %}
+[% extends "base.html" %]
 
-{% block content %}
-<h1 class="title">{{ _('Edit Profile') }}</h1>
+[% block content %]
+<h1 class="title">[[ _('Edit Profile') ]]</h1>
 
 <form action="" method="post">
-{{ form.hidden_tag() }}
+[[ form.hidden_tag() ]]
 
 <div class="field">
-	<label class="label">{{ form.name.label }}</label>
+	<label class="label">[[ form.name.label ]]</label>
 	<div class="control">
-		{{ form.name(size=32, class_='input') }}
+		[[ form.name(size=32, class_='input') ]]
 	</div>
-	{% if form.name.errors %}
+	[% if form.name.errors %]
 	<ul class="help is-danger">
-	{% for error in form.name.errors %}
-		<li>{{ error }}</li>
-	{% endfor %}
+	[% for error in form.name.errors %]
+		<li>[[ error ]]</li>
+	[% endfor %]
 	<ul>
-	{% endif %}
+	[% endif %]
 </div>
 
 <div class="field">
-	<label class="label">{{ form.self_introduction.label }}</label>
+	<label class="label">[[ form.self_introduction.label ]]</label>
 	<div class="control">
-		{{ form.self_introduction(cols=50, rows=4, class_='textarea') }}
+		[[ form.self_introduction(cols=50, rows=4, class_='textarea') ]]
 	</div>
-	{% if form.self_introduction.errors %}
+	[% if form.self_introduction.errors %]
 	<ul class="help is-danger">
-	{% for error in form.self_introduction.errors %}
-		<li>{{ error }}</li>
-	{% endfor %}
+	[% for error in form.self_introduction.errors %]
+		<li>[[ error ]]</li>
+	[% endfor %]
 	<ul>
-	{% endif %}
+	[% endif %]
 </div>
 
 <div class="field">
-  <div class="control">{{ form.submit(class_='button is-primary') }}</div>
+  <div class="control">[[ form.submit(class_='button is-primary') ]]</div>
 </div>
 
 </form>
-{% endblock %}
+[% endblock %]

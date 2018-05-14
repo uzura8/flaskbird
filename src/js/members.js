@@ -43,7 +43,6 @@ var uriPrefix = '/members';
 var MemberList = {
   // HTML上のscriptタグのidを指定する
   template: '#member-list',
-  delimiters: ['[[', ']]'],
   data: function() {
     return {
       isLoading: false,
@@ -79,7 +78,6 @@ var MemberList = {
 };
 
 var Member = {
-  delimiters: ['[[', ']]'],
   template: '#member-detail',
   data: function () {
     return {
@@ -117,10 +115,9 @@ var Member = {
 
 // ユーザー詳細ページ内で部分的に表示されるユーザーのプロフィールページ
 var MemberProfile = {
-  delimiters: ['[[', ']]'],
   template:
     '<div class="member-profile">' + 
-      '<h3>こちらはユーザー [[ $route.params.memberId ]] のプロフィールページです。</h3>' +
+      '<h3>こちらはユーザー {{ $route.params.memberId }} のプロフィールページです。</h3>' +
     '</div>'
 }
 
@@ -128,7 +125,7 @@ var MemberProfile = {
 var MemberPosts = {
   template:
     '<div class="member-posts">' + 
-      '<h3>こちらはユーザー [[ $route.params.memberId ]] の投稿ページです。</h3>' +
+      '<h3>こちらはユーザー {{ $route.params.memberId }} の投稿ページです。</h3>' +
     '</div>'
 }
 

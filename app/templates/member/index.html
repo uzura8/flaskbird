@@ -1,23 +1,23 @@
-{% extends "base.html" %}
+[% extends "base.html" %]
 
-{% block content %}
-<h1 class="title">{{ _('Hi, %(name)s!', name=current_user.name) }}</h1>
+[% block content %]
+<h1 class="title">[[ _('Hi, %(name)s!', name=current_user.name) ]]</h1>
 
 <article class="media">
   <figure class="media-left">
     <p class="image is-64x64">
-      <img src="{{ current_user.avatar(128) }}">
+      <img src="[[ current_user.avatar(128) ]]">
     </p>
   </figure>
   <div class="media-content">
     <div class="content">
       <p>
-        <strong>{{ current_user.name }}</strong><br>
-        {% if current_user.self_introduction %}<p>{{ current_user.self_introduction }}</p>{% endif %}
-        {% if current_user.last_access %}<small>{{ _('Last seen on') }}: {{ current_user.last_access }}</small>{% endif %}
+        <strong>[[ current_user.name ]]</strong><br>
+        [% if current_user.self_introduction %]<p>[[ current_user.self_introduction ]]</p>[% endif %]
+        [% if current_user.last_access %]<small>[[ _('Last seen on') ]]: [[ current_user.last_access ]]</small>[% endif %]
       </p>
-       <p><a href="{{ url_for('member.edit_profile') }}"><i class="fas fa-edit"></i>{{ _('Edit your profile') }}</a></p>
+       <p><a href="[[ url_for('member.edit_profile') ]]"><i class="fas fa-edit"></i>[[ _('Edit your profile') ]]</a></p>
     </div>
   </div>
 </article>
-{% endblock %}
+[% endblock %]

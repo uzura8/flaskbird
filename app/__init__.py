@@ -22,6 +22,17 @@ def create_app():
         static_folder='statics',
         template_folder='templates')
 
+    jinja_options = app.jinja_options.copy()
+    jinja_options.update({
+        'block_start_string': '[%',
+        'block_end_string': '%]',
+        'variable_start_string': '[[',
+        'variable_end_string': ']]',
+        'comment_start_string': '[#',
+        'comment_end_string': '#]'
+    })
+    app.jinja_options = jinja_options
+
     from instance.config import FLASKBIRD_ENV
     env = FLASKBIRD_ENV
     app.config.from_object('config.{}.{}Config'.format(env, env.capitalize()))

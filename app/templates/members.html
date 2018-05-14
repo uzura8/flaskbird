@@ -1,18 +1,18 @@
-{% extends "base.html" %}
+[% extends "base.html" %]
 
-{% block content %}
+[% block content %]
 <div id="app">
   <router-view></router-view>
 </div>
-{% endblock %}
+[% endblock %]
 
-{% block footer_script %}
+[% block footer_script %]
 <script type="x-template" id="member-list">
 <div>
   <b-loading :is-full-page="true" :active.sync="isLoading"></b-loading>
-  <h1 class="title">[[ $t("message['Members']") ]]</h1>
+  <h1 class="title">{{ $t("message['Members']") }}</h1>
   <div v-if="error" class="error">
-    [[ error ]]
+    {{ error }}
   </div>
   <div class="p-member-list">
     <article class="media" v-for="member in members" :key="member.id">
@@ -24,17 +24,17 @@
       <div class="media-content">
         <div class="content">
           <p>
-            <strong><router-link :to="'/members/' + member.id">[[ member.name ]]</router-link></strong>
+            <strong><router-link :to="'/members/' + member.id">{{ member.name }}</router-link></strong>
             <br>
-            [[ member.self_introduction ]]
+            {{ member.self_introduction }}
           </p>
         </div>
         <aside>
           <dl class="is-size-7 c-horizontal">
-            <dt>{{ _('Registered at') }}</dt>
-              <dd>[[ member.created_at | moment ]]</dd>
-            <dt>{{ _('Last Login') }}</dt>
-              <dd>[[ member.last_login | moment ]]</dd>
+            <dt>[[ _('Registered at') ]]</dt>
+              <dd>{{ member.created_at | moment }}</dd>
+            <dt>[[ _('Last Login') ]]</dt>
+              <dd>{{ member.last_login | moment }}</dd>
           </dl>
         </aside>
       </div>
@@ -46,11 +46,11 @@
 
 <script type="x-template" id="member-detail">
 <div class="member"> 
-  <h1 class="title">[[ $t('message["{name}\'s Page"]', {name: member.name}) ]]</h1>
+  <h1 class="title">{{ $t('message["{name}\'s Page"]', {name: member.name}) }}</h1>
   <router-link :to="'/members/' + $route.params.memberId + '/profile'">ユーザーのプロフィールページを見る</router-link>
   <router-link :to="'/members/' + $route.params.memberId + '/posts'">ユーザーの投稿ページを見る</router-link>
   <router-view></router-view>
 </div>
 </script>
-<script src="{{ url_static('js/members.js')  }}"></script>
-{% endblock %}
+<script src="[[ url_static('js/members.js')  ]]"></script>
+[% endblock %]
