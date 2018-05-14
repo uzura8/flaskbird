@@ -16,9 +16,8 @@
     {% block post_header %}{% endblock %}
     <link rel="shortcut icon" href="">
 </head>
-<header>
 <nav class="navbar is-fixed-top is-light">
-  <div class="container">
+  <div class="container is-fluid">
     <div class="navbar-brand">
       <a class="navbar-item brand-text" href="{{ url_for('site.index') }}">
         Microblog
@@ -43,9 +42,8 @@
     </div>
   </div>
 </nav>
-</header>
 
-<section class="container is-fluid">
+<div class="container is-fluid">
 <div class="columns">
 <div class="column is-9">
 {% with messages = get_flashed_messages() %}
@@ -53,7 +51,7 @@
 <article class="message is-success">
 <ul class="message-body">
 {% for message in messages %}
-<li>{{ message }}</li>
+  <li>{{ message }}</li>
 {% endfor %}
 </ul>
 </article>
@@ -62,14 +60,30 @@
 
 {% block content %}{% endblock %}
 
-</div>
-<div class="submenu column is-3">
-</div>
-</div>
-</section>
+</div> <!-- /.is-9 -->
+<div class="column is-3">
+  <aside class="menu">
+    <p class="menu-label">{{ _('Member Menu')  }}</p>
+    <ul class="menu-list">
+{% if current_user.is_authenticated %}
+      <li><a class="navbar-item" href="{{ url_for('member.index') }}">{{ _('Home') }}</a></li>
+      <li><a class="navbar-item" href="{{ url_for('member.logout') }}">{{ _('Logout') }}</a></li>
+{% else %}
+      <li><a class="navbar-item" href="{{ url_for('member.login') }}">{{ _('Login') }}</a></li>
+{% endif %}
+    </ul>
+    <p class="menu-label">{{ _('Site Menu')  }}</p>
+    <ul class="menu-list">
+      <li><a class="navbar-item" href="{{ url_for('site.index') }}">{{ _('Top') }}</a></li>
+      <li><a class="navbar-item" href="{{ url_for('site.members') }}">{{ _('Members') }}</a></li>
+    </ul>
+  </aside>
+</div> <!-- /.column .is-3 -->
+</div> <!-- /.columns -->
+</div> <!-- /.container -->
 
 <footer class="footer">
-<div class="container">
+<div class="container is-fluid">
   <div class="content has-text-centered">
     <p>
       <strong>Flaskbird</strong> by <a href="https://github.com/uzura8/flaskbird">Uzura Labs</a>. The source code is licensed

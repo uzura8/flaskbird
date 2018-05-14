@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-07 07:53+0900\n"
+"POT-Creation-Date: 2018-05-14 09:10+0900\n"
 "PO-Revision-Date: 2018-04-17 08:04+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -94,25 +94,33 @@ msgstr "パスワード再設定が完了しました。"
 msgid "Your changes have been saved."
 msgstr "変更しました。"
 
-#: app/templates/base.html:35
+#: app/templates/base.html:33 app/templates/base.html:77
 msgid "Top"
 msgstr "トップ"
 
-#: app/templates/base.html:36
+#: app/templates/base.html:34 app/templates/base.html:78
 msgid "Members"
 msgstr "メンバー一覧"
 
-#: app/templates/base.html:38
+#: app/templates/base.html:36 app/templates/base.html:69
 msgid "Home"
 msgstr "ホーム"
 
-#: app/templates/base.html:39
+#: app/templates/base.html:37 app/templates/base.html:70
 msgid "Logout"
 msgstr "ログアウト"
 
-#: app/templates/base.html:41
+#: app/templates/base.html:39 app/templates/base.html:72
 msgid "Login"
 msgstr "ログイン"
+
+#: app/templates/base.html:66
+msgid "Member Menu"
+msgstr "メンバーメニュー"
+
+#: app/templates/base.html:75
+msgid "Site Menu"
+msgstr "サイトメニュー"
 
 #: app/templates/members.html:34
 msgid "Registered at"
@@ -147,10 +155,6 @@ msgstr "プロフィール編集"
 msgid "Hi, %(name)s!"
 msgstr "こんにちは, %(name)s!"
 
-#, python-format
-msgid "%(name)s's Page"
-msgstr "%(name)s さんのページです"
-
 #: app/templates/member/index.html:17
 msgid "Last seen on"
 msgstr "最終アクセス日時"
@@ -174,4 +178,7 @@ msgstr "新しいパスワードを設定する"
 #: app/templates/member/reset_password_request.html:4
 msgid "Reset Password"
 msgstr "パスワード再設定手続き"
+
+msgid "%(name)s's Page"
+msgstr "%(name)s さんのページです"
 
