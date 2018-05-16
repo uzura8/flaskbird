@@ -12,10 +12,13 @@
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="[[ url_static('css/common.css') ]]">
     [% block post_header %][% endblock %]
     <link rel="shortcut icon" href="">
 </head>
+<body>
+<div id="container">
 <nav class="navbar is-fixed-top is-light">
   <div class="container is-fluid">
     <div class="navbar-brand">
@@ -29,7 +32,7 @@
       </div>
     </div>
     <div class="navbar-menu" id="nav-head-global">
-      <div class="navbar-end">
+      <div class="navbar-start">
         <a class="navbar-item" href="[[ url_for('site.index') ]]">[[ _('Top') ]]</a>
         <a class="navbar-item" href="[[ url_for('site.members') ]]">[[ _('Members') ]]</a>
 [% if current_user.is_authenticated %]
@@ -38,6 +41,32 @@
 [% else %]
         <a class="navbar-item" href="[[ url_for('member.login') ]]">[[ _('Login') ]]</a>
 [% endif %]
+      </div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="field is-grouped">
+          <p class="control">
+            <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://localhost:4000" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=http://localhost:4000&amp;via=jgthms">
+              <span class="icon">
+                <i class="fab fa-twitter"></i>
+              </span>
+              <span>
+                Tweet
+              </span>
+            </a>
+          </p>
+          <p class="control">
+            <b-dropdown>
+              <button class="button is-primary" slot="trigger">
+                  <span>Click me!</span>
+                  <b-icon icon="menu-down"></b-icon>
+              </button>
+              <b-dropdown-item>Action</b-dropdown-item>
+              <b-dropdown-item>Another action</b-dropdown-item>
+              <b-dropdown-item>Something else</b-dropdown-item>
+            </b-dropdown>
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -92,14 +121,13 @@
   </div>
 </div>
 </footer>
+</div>
 
 <script src="[[ url_static('js/vendor.js') ]]"></script>
-<script src="[[ url_static('js/common.js') ]]"></script>
-[#
-[% if g.locale != 'en' %]
-<script src="[[ url_static('js/moment-' + g.locale + '.min.js') ]]"></script>
+[% if not use_vue_on_child %]
+<script src="[[ url_static('js/default.js') ]]"></script>
 [% endif %]
-#]
+
 [% block footer_script %][% endblock %]
 </body>
 </html>

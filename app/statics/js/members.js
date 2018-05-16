@@ -151,47 +151,39 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm.js");
+/* harmony import */ var buefy_lib_buefy_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! buefy/lib/buefy.css */ "./node_modules/buefy/lib/buefy.css");
+/* harmony import */ var buefy_lib_buefy_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(buefy_lib_buefy_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm.js");
+
+
+var common = __webpack_require__(/*! ./common.js */ "./src/js/common.js");
+var locale = common.locale;
+var translations = common.translations;
+var moment = common.moment;
+var axios = common.axios;
+
 var Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-var VueRouter = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.common.js");
-Vue.use(VueRouter);
 
-var locale = document.getElementsByTagName('html')[0].getAttribute('lang');
+var Buefy = __webpack_require__(/*! buefy */ "./node_modules/buefy/lib/index.js");
 
-Vue.use(vue_i18n__WEBPACK_IMPORTED_MODULE_0__["default"]);
-var messages = {
-  en: __webpack_require__(/*! ./translations/en-message.json */ "./src/js/translations/en-message.json"),
-  ja: __webpack_require__(/*! ./translations/ja-message.json */ "./src/js/translations/ja-message.json"),
-};
-var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_0__["default"]({
+Vue.use(Buefy.default);
+//Vue.component(Buefy.default.Loading.name, Buefy.default.Loading);
+
+
+Vue.use(vue_i18n__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_1__["default"]({
   locale: locale,
   fallbackLocale: 'en',
-  messages
+  translations
 });
 
-var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-__webpack_require__(/*! moment/locale/ja */ "./node_modules/moment/locale/ja.js");
-moment.locale(locale);
-////Vue.use(require('vue-moment'));
 Vue.filter('moment', function (date) {
   return moment(date).format('LLL');
 });
 
-var Buefy = __webpack_require__(/*! buefy */ "./node_modules/buefy/lib/index.js");
-//Vue.use(Buefy.default);
-Vue.component(Buefy.default.Loading.name, Buefy.default.Loading);
+var VueRouter = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.common.js");
+Vue.use(VueRouter);
 
-// axios を require してインスタンスを生成する
-const axiosBase = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-const axios = axiosBase.create({
-  baseURL: '/',
-  headers: {
-    'ContentType': 'application/json',
-    'X-Requested-With': 'XMLHttpRequest',
-    'Accept-Language': locale
-  },
-  responseType: 'json'
-});
 
 var uriPrefix = '/members';
 var MemberList = {
@@ -467,31 +459,9 @@ var app = new Vue({
     //  $('#header-nav').collapse('hide')
     //}
   }
-}).$mount('#app')
+}).$mount('#container')
 
 
-
-/***/ }),
-
-/***/ "./src/js/translations/en-message.json":
-/*!*********************************************!*\
-  !*** ./src/js/translations/en-message.json ***!
-  \*********************************************/
-/*! exports provided: message, default */
-/***/ (function(module) {
-
-module.exports = {"message":{"An unexpected error has occurred":"An unexpected error has occurred","Back":"Back","Check your email for the instructions to reset your password":"Check your email for the instructions to reset your password","Congratulations, you are now a registered user!":"Congratulations, you are now a registered user!","Edit Profile":"Edit Profile","Edit your profile":"Edit your profile","Email":"Email","File Not Found":"File Not Found","Forgot Your Password?":"Forgot Your Password?","Hi, {name}!":"Hi, {name}!","Home":"Home","Invalid name or password":"Invalid name or password","Last Login":"Last Login","Last seen on":"Last seen on","Login":"Login","Logout":"Logout","Member Menu":"Member Menu","Members":"Members","Name":"Name","New User?":"New User?","Password":"Password","Please log in to access this page.":"Please log in to access this page.","Please use a different email address.":"Please use a different email address.","Please use a different name.":"Please use a different name.","Register":"Register","Registered at":"Registered at","Remember Me":"Remember Me","Repeat Password":"Repeat Password","Request Password Reset":"Request Password Reset","Reset Password":"Reset Password","Reset Your Password":"Reset Your Password","Self-introduction":"Self-introduction","Sign In":"Sign In","Site Menu":"Site Menu","Submit":"Submit","The administrator has been notified. Sorry for the inconvenience!":"The administrator has been notified. Sorry for the inconvenience!","Top":"Top","Username":"Username","Your changes have been saved.":"Your changes have been saved.","Your password has been reset.":"Your password has been reset.","{name}'s Page":"{name}'s Page"}};
-
-/***/ }),
-
-/***/ "./src/js/translations/ja-message.json":
-/*!*********************************************!*\
-  !*** ./src/js/translations/ja-message.json ***!
-  \*********************************************/
-/*! exports provided: message, default */
-/***/ (function(module) {
-
-module.exports = {"message":{"An unexpected error has occurred":"意図しないエラーが発生しました","Back":"戻る","Check your email for the instructions to reset your password":"メールに記載されているURLにアクセスし、パスワードを再設定してください。","Congratulations, you are now a registered user!":"メンバー登録が完了しました。","Edit Profile":"プロフィール編集","Edit your profile":"プロフィールを編集する","Email":"メールアドレス","File Not Found":"見つかりません","Forgot Your Password?":"パスワードを忘れた場合はこちら","Hi, {name}!":"こんにちは, {name}!","Home":"ホーム","Invalid name or password":"ユーザ名かパスワードが正しくありません。","Last Login":"最終ログイン日","Last seen on":"最終アクセス日時","Login":"ログイン","Logout":"ログアウト","Member Menu":"メンバーメニュー","Members":"メンバー一覧","Name":"ユーザ名","New User?":"新規メンバー登録","Password":"パスワード","Please log in to access this page.":"ログインが必要です。","Please use a different email address.":"そのメールアドレスは登録できません。","Please use a different name.":"そのユーザ名は登録できません。","Register":"登録する","Registered at":"登録日時","Remember Me":"次回から自動的にログイン","Repeat Password":"確認用パスワード","Request Password Reset":"送信する","Reset Password":"パスワード再設定手続き","Reset Your Password":"新しいパスワードを設定する","Self-introduction":"自己紹介","Sign In":"ログイン","Site Menu":"サイトメニュー","Submit":"送信する","The administrator has been notified. Sorry for the inconvenience!":"ご不便をおかけして申し訳ございません。サイト管理者に通知しました。","Top":"トップ","Username":"ユーザ","Your changes have been saved.":"変更しました。","Your password has been reset.":"パスワード再設定が完了しました。","{name}'s Page":"{name} さんのページです"}};
 
 /***/ })
 

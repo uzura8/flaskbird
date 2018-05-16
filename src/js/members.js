@@ -1,43 +1,33 @@
-var Vue = require('vue');
-var VueRouter = require('vue-router');
-Vue.use(VueRouter);
+'use strict';
 
-var locale = document.getElementsByTagName('html')[0].getAttribute('lang');
+var common = require('./common.js');
+var locale = common.locale;
+var translations = common.translations;
+var moment = common.moment;
+var axios = common.axios;
+
+var Vue = require('vue');
+
+var Buefy = require('buefy');
+import 'buefy/lib/buefy.css'
+Vue.use(Buefy.default);
+//Vue.component(Buefy.default.Loading.name, Buefy.default.Loading);
+
 import VueI18n from 'vue-i18n';
 Vue.use(VueI18n);
-var messages = {
-  en: require('./translations/en-message.json'),
-  ja: require('./translations/ja-message.json'),
-};
 var i18n = new VueI18n({
   locale: locale,
   fallbackLocale: 'en',
-  messages
+  translations
 });
 
-var moment = require('moment');
-require('moment/locale/ja');
-moment.locale(locale);
-////Vue.use(require('vue-moment'));
 Vue.filter('moment', function (date) {
   return moment(date).format('LLL');
 });
 
-var Buefy = require('buefy');
-//Vue.use(Buefy.default);
-Vue.component(Buefy.default.Loading.name, Buefy.default.Loading);
+var VueRouter = require('vue-router');
+Vue.use(VueRouter);
 
-// axios を require してインスタンスを生成する
-const axiosBase = require('axios');
-const axios = axiosBase.create({
-  baseURL: '/',
-  headers: {
-    'ContentType': 'application/json',
-    'X-Requested-With': 'XMLHttpRequest',
-    'Accept-Language': locale
-  },
-  responseType: 'json'
-});
 
 var uriPrefix = '/members';
 var MemberList = {
@@ -313,5 +303,5 @@ var app = new Vue({
     //  $('#header-nav').collapse('hide')
     //}
   }
-}).$mount('#app')
+}).$mount('#container')
 

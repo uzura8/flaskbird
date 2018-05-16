@@ -11,9 +11,37 @@ document.addEventListener('DOMContentLoaded', function () {
         var $target = document.getElementById(target);
         // Toggle the class on both the "navbar-burger" and the "navbar-menu"
         $el.classList.toggle('is-active');
-        $target.classList.toggle('is-active');
+        if ($target !== null) $target.classList.toggle('is-active');
       });
     });
   }
 });
+
+var locale = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+var translations = {
+  en: require('./translations/en-message.json'),
+  ja: require('./translations/ja-message.json'),
+};
+
+var moment = require('moment');
+require('moment/locale/' + locale);
+moment.locale(locale);
+
+// axios を require してインスタンスを生成する
+const axiosBase = require('axios');
+const axios = axiosBase.create({
+  baseURL: '/',
+  headers: {
+    'ContentType': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
+    'Accept-Language': locale
+  },
+  responseType: 'json'
+});
+
+exports.locale = locale;
+exports.translations = translations;
+exports.moment = moment;
+exports.axios = axios;
 

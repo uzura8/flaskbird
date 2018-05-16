@@ -9,10 +9,8 @@ const precss = require('precss');
 module.exports = [
   {
     entry: {
-      common: path.join(root, 'src/js/common.js'),
+      default: path.join(root, 'src/js/default.js'),
       members: path.join(root, 'src/js/members.js'),
-      //vendor: ['jquery', 'tether', 'bootstrap'],
-      //vendor: ['moment'],
     },
     output: {
       path: path.join(root, 'app/statics/js'),
@@ -45,15 +43,6 @@ module.exports = [
     plugins: [
       // Ignore all locale files of moment.js
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-      //// webpack.ProvidePluginを使用すると、指定した変数名でライブラリを使用できるようになる
-      //new webpack.ProvidePlugin({
-      //  $: 'jquery',
-      //  jQuery: 'jquery',
-      //  'window.jQuery': 'jquery'
-      //}),
-      //new webpack.ProvidePlugin({
-      //  moment: 'moment'
-      //})
     ],
     devtool: 'source-map',
   },
