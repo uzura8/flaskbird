@@ -30,6 +30,22 @@
         <span></span>
         <span></span>
       </div>
+      <div class="navbar-item is-hidden-desktop">
+        <b-dropdown position="is-bottom-left">
+          <button class="button is-primary" slot="trigger">
+            <b-icon icon="twitter"></b-icon>
+            <span>Login</span>
+            <b-icon icon="menu-down"></b-icon>
+          </button>
+          <b-dropdown-item custom paddingless>
+            <div class="modal-card is-marginless">
+              <section class="modal-card-body">
+              [% include "member/_parts/login.tpl" %]
+              </section>
+            </div>
+          </b-dropdown-item>
+        </b-dropdown>
+      </div>
     </div>
     <div class="navbar-menu" id="nav-head-global">
       <div class="navbar-start">
@@ -42,30 +58,22 @@
         <a class="navbar-item" href="[[ url_for('member.login') ]]">[[ _('Login') ]]</a>
 [% endif %]
       </div>
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="field is-grouped">
-          <p class="control">
-            <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://localhost:4000" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=http://localhost:4000&amp;via=jgthms">
-              <span class="icon">
-                <i class="fab fa-twitter"></i>
-              </span>
-              <span>
-                Tweet
-              </span>
-            </a>
-          </p>
-          <p class="control">
-            <b-dropdown>
-              <button class="button is-primary" slot="trigger">
-                  <span>Click me!</span>
-                  <b-icon icon="menu-down"></b-icon>
-              </button>
-              <b-dropdown-item>Action</b-dropdown-item>
-              <b-dropdown-item>Another action</b-dropdown-item>
-              <b-dropdown-item>Something else</b-dropdown-item>
-            </b-dropdown>
-          </p>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <b-dropdown position="is-bottom-left">
+            <button class="button is-primary" slot="trigger">
+              <b-icon icon="twitter"></b-icon>
+              <span>Login</span>
+              <b-icon icon="menu-down"></b-icon>
+            </button>
+            <b-dropdown-item custom paddingless>
+              <div class="modal-card is-marginless" id="p-navbar-login-desktop">
+                <section class="modal-card-body">
+                [% include "member/_parts/login.tpl" %]
+                </section>
+              </div>
+            </b-dropdown-item>
+          </b-dropdown>
         </div>
       </div>
     </div>
