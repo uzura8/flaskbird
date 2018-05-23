@@ -1,10 +1,12 @@
-from flask import render_template, g
-from flask_babel import _, get_locale
-from app.site import bp
+from flask import render_template
+from . import bp, site_before_request
+from app.member import site_auth_check
 
 @bp.before_request
+@site_before_request
+@site_auth_check
 def before_request():
-    g.locale = str(get_locale())
+    pass
 
 @bp.route('/')
 def index():
