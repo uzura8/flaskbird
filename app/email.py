@@ -19,7 +19,7 @@ def send_email(subject, sender, recipients, text_body, html_body):
 
 def send_password_reset_email(member):
     token = member.get_reset_password_token()
-    send_email('[Microblog] Reset Your Password',
+    send_email('[{}] Reset Your Password'.format(current_app.config['FBD_SITE_NAME']),
                sender=current_app.config['FBD_ADMIN_MAIL'],
                recipients=[member.email],
                text_body=render_template('email/reset_password.txt',

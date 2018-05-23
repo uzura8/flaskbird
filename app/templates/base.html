@@ -3,9 +3,9 @@
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   [% if title %]
-  <title>[[ title ]] | microblog</title>
+  <title>[[ title ]] | [[ config.FBD_SITE_NAME ]]</title>
   [% else %]
-  <title>microblog</title>
+  <title>[[ config.FBD_SITE_NAME ]]</title>
   [% endif %]
   <meta charset="utf-8">
   <meta name="description" content="">
@@ -22,7 +22,7 @@
   <div class="container is-fluid">
     <div class="navbar-brand">
       <a class="navbar-item brand-text" href="[[ url_for('site.index') ]]">
-        Microblog
+        [[ config.FBD_SITE_NAME ]]
       </a>
       <div class="navbar-burger burger" data-target="nav-head-global">
         <span></span>

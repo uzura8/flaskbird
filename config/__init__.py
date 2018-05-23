@@ -14,9 +14,9 @@ class BaseConfig(object):
     # Babel
     LANGUAGES = ['en', 'ja']
 
-    FBD_ADMIN_MAIL = 'admin@example.com'
-
     # Flaskbird
+    FBD_SITE_NAME = 'FlaskBird'
+    FBD_ADMIN_MAIL = 'admin@example.com'
     IS_DEBUG_LOGGING = False
     IS_SEND_ERROR_REPORT_MAIL = False
     # Modules
