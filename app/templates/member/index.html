@@ -11,11 +11,11 @@
   </figure>
   <div class="media-content">
     <div class="content">
-      <p>
+      <div>
         <strong>[[ current_user.name ]]</strong><br>
         [% if current_user.self_introduction %]<p>[[ current_user.self_introduction ]]</p>[% endif %]
         [% if current_user.last_access %]<small>[[ _('Last seen on') ]]: [[ current_user.last_access ]]</small>[% endif %]
-      </p>
+      </div>
        <p><a href="[[ url_for('member.edit_profile') ]]"><i class="fas fa-edit"></i>[[ _('Edit your profile') ]]</a></p>
     </div>
   </div>

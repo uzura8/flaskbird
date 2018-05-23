@@ -151,30 +151,28 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var buefy_lib_buefy_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! buefy/lib/buefy.css */ "./node_modules/buefy/lib/buefy.css");
-/* harmony import */ var buefy_lib_buefy_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(buefy_lib_buefy_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm.js");
+/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm.js");
 
 
-var common = __webpack_require__(/*! ./common.js */ "./src/js/common.js");
-var locale = common.locale;
-var translations = common.translations;
-var moment = common.moment;
-var axios = common.axios;
+const common = __webpack_require__(/*! ./common.js */ "./src/js/common.js");
+const locale = common.locale;
+const translations = common.translations;
+const moment = common.moment;
+const axios = common.axios;
 
 var Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 var Buefy = __webpack_require__(/*! buefy */ "./node_modules/buefy/lib/index.js");
-
 Vue.use(Buefy.default);
+//import 'buefy/lib/buefy.css'
 //Vue.component(Buefy.default.Loading.name, Buefy.default.Loading);
 
 
-Vue.use(vue_i18n__WEBPACK_IMPORTED_MODULE_1__["default"]);
-var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_1__["default"]({
+Vue.use(vue_i18n__WEBPACK_IMPORTED_MODULE_0__["default"]);
+var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_0__["default"]({
   locale: locale,
   fallbackLocale: 'en',
-  translations
+  messages: translations
 });
 
 Vue.filter('moment', function (date) {

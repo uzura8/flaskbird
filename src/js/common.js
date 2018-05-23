@@ -25,8 +25,10 @@ var translations = {
 };
 
 var moment = require('moment');
-require('moment/locale/' + locale);
-moment.locale(locale);
+if (locale !== 'en') {
+  require('moment/locale/' + locale);
+  moment.locale(locale);
+}
 
 // axios を require してインスタンスを生成する
 const axiosBase = require('axios');

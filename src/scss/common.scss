@@ -16,7 +16,7 @@
 @import "../../node_modules/bulma/sass/utilities/functions";
 
 //// 2. Set your own initial variables
-$navbar-height: 40px;
+//$navbar-height: 40px;
 //// Update blue
 //$blue: #72d0eb;
 //// Add pink and its invert
@@ -59,13 +59,13 @@ $navbar-height: 40px;
 //@import "../../node_modules/buefy/src/scss/components/_checkbox";
 //@import "../../node_modules/buefy/src/scss/components/_collapse";
 //@import "../../node_modules/buefy/src/scss/components/_datepicker";
-//@import "../../node_modules/buefy/src/scss/components/_dialog";
-//@import "../../node_modules/buefy/src/scss/components/_dropdown";
-//@import "../../node_modules/buefy/src/scss/components/_form";
-//@import "../../node_modules/buefy/src/scss/components/_icon";
+@import "../../node_modules/buefy/src/scss/components/_dialog";
+@import "../../node_modules/buefy/src/scss/components/_dropdown";
+@import "../../node_modules/buefy/src/scss/components/_form";
+@import "../../node_modules/buefy/src/scss/components/_icon";
 @import "../../node_modules/buefy/src/scss/components/_loading";
 //@import "../../node_modules/buefy/src/scss/components/_message";
-//@import "../../node_modules/buefy/src/scss/components/_modal";
+@import "../../node_modules/buefy/src/scss/components/_modal";
 //@import "../../node_modules/buefy/src/scss/components/_notices";
 //@import "../../node_modules/buefy/src/scss/components/_pagination";
 //@import "../../node_modules/buefy/src/scss/components/_panel";
@@ -81,3 +81,4 @@ $navbar-height: 40px;
 //@import "../../node_modules/buefy/src/scss/components/_upload";
 
 @import "./flaskbird.scss";
+[v-cloak] { display: none !important; } 

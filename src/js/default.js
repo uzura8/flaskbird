@@ -1,16 +1,16 @@
 'use strict';
 
-var common = require('./common.js');
-var locale = common.locale;
-var translations = common.translations;
-var moment = common.moment;
-var axios = common.axios;
+const common = require('./common.js');
+const locale = common.locale;
+const translations = common.translations;
+const moment = common.moment;
+const axios = common.axios;
 
 var Vue = require('vue');
 
 var Buefy = require('buefy');
-import 'buefy/lib/buefy.css'
 Vue.use(Buefy.default);
+//import 'buefy/lib/buefy.css'
 //Vue.component(Buefy.default.Loading.name, Buefy.default.Loading);
 
 import VueI18n from 'vue-i18n';
@@ -18,7 +18,7 @@ Vue.use(VueI18n);
 var i18n = new VueI18n({
   locale: locale,
   fallbackLocale: 'en',
-  translations
+  messages: translations
 });
 
 Vue.filter('moment', function (date) {

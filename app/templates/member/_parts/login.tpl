@@ -1,14 +1,14 @@
 <form action="[[ url_for('member.login') ]]" method="post">
-[[ form.hidden_tag() ]]
+[[ g.login_form.hidden_tag() ]]
 
 <div class="field">
-	<label class="label">[[ form.name.label ]]</label>
+	<label class="label">[[ g.login_form.name.label ]]</label>
 	<div class="control">
-		[[ form.name(size=32, class_='input') ]]
+		[[ g.login_form.name(size=32, class_='input') ]]
 	</div>
-	[% if form.name.errors %]
+	[% if g.login_form.name.errors %]
 	<ul class="help is-danger">
-	[% for error in form.name.errors %]
+	[% for error in g.login_form.name.errors %]
 		<li>[[ error ]]</li>
 	[% endfor %]
 	<ul>
@@ -16,13 +16,13 @@
 </div>
 
 <div class="field">
-	<label class="label">[[ form.password.label ]]</label>
+	<label class="label">[[ g.login_form.password.label ]]</label>
 	<div class="control">
-		[[ form.password(size=32, class_='input') ]]
+		[[ g.login_form.password(size=32, class_='input') ]]
 	</div>
-	[% if form.password.errors %]
+	[% if g.login_form.password.errors %]
 	<ul class="help is-danger">
-	[% for error in form.password.errors %]
+	[% for error in g.login_form.password.errors %]
 		<li>[[ error ]]</li>
 	[% endfor %]
 	<ul>
@@ -31,12 +31,12 @@
 
 <div class="field">
   <div class="control">
-    [[ form.remember_me(class_='checkbox') ]] [[ form.remember_me.label ]]
+    [[ g.login_form.remember_me(class_='checkbox') ]] [[ g.login_form.remember_me.label ]]
   </div>
 </div>
 
 <div class="field">
-  <div class="control">[[ form.submit(class_='button is-primary') ]]</div>
+  <div class="control">[[ g.login_form.submit(class_='button is-primary') ]]</div>
 </div>
 
 <ul class="field">
