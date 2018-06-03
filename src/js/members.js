@@ -1,5 +1,7 @@
 'use strict';
 
+const util = require('./util.js');
+const site = require('./site.js');
 const common = require('./common.js');
 const locale = common.locale;
 const translations = common.translations;
@@ -71,12 +73,14 @@ var Member = {
   data: function () {
     return {
       isLoading: false,
+      currentUser: null,
       member: function () { return {} },
       error: null
     }
   },
   // 初期化時にデータを取得する
   created: function () {
+    this.currentUser = site.currentUser();
     this.fetchData()
   },
   // ルーティング変更時に再度データ取得するために$routeの変更をwatch
@@ -94,10 +98,12 @@ var Member = {
         this.loading = false
       })
       .catch(function(error) {
-        console.log(error);
         this.error = error.toString()
         this.loading = false
       });
+    },
+    siteUri: function (path) {
+      return site.uri(path);
     }
   }
 }

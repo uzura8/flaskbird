@@ -16,7 +16,9 @@
     [% block post_header %][% endblock %]
     <link rel="shortcut icon" href="">
 </head>
-<body>
+[% if current_user.is_authenticated %]<body data-current-user='{"id":[[ current_user.id ]]}'>
+[% else %]<body>
+[% endif %]
 <div id="container">
 <nav class="navbar is-fixed-top is-light">
   <div class="container is-fluid">

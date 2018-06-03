@@ -1,6 +1,7 @@
 'use strict';
 
 const common = require('./common.js');
+const site = require('./site.js');
 const locale = common.locale;
 const translations = common.translations;
 const moment = common.moment;

@@ -32,8 +32,8 @@
           <dl class="is-size-7 c-horizontal">
             <dt>[[ _('Registered at') ]]</dt>
               <dd>{{ member.created_at | moment }}</dd>
-            <dt>[[ _('Last Login') ]]</dt>
-              <dd>{{ member.last_login | moment }}</dd>
+            <dt v-if="member.last_login">[[ _('Last Login') ]]</dt>
+              <dd v-if="member.last_login">{{ member.last_login | moment }}</dd>
           </dl>
         </aside>
       </div>
@@ -45,9 +45,27 @@
 
 <script type="x-template" id="member-detail">
 <div class="member"> 
-  <h1 class="title">{{ $t('message["{name}\'s Page"]', {name: member.name}) }}</h1>
-  <router-link :to="'/members/' + $route.params.memberId + '/profile'">ユーザーのプロフィールページを見る</router-link>
-  <router-link :to="'/members/' + $route.params.memberId + '/posts'">ユーザーの投稿ページを見る</router-link>
+<b-loading :is-full-page="true" :active.sync="isLoading"></b-loading>
+<h1 class="title">{{ $t('message["{name}\'s Page"]', {name: member.name}) }}</h1>
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img :src="member._links.avatar">
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <div>
+        <strong>{{ member.name }}</strong><br>
+        <p v-if="member.self_introduction">{{ member.self_introduction }}</p>
+        <small v-if="member.last_access">{{ $t('message["Last seen on"]') }}: {{ member.last_access | moment}}</small>
+      </div>
+      <p v-if="member.id == currentUser.id"><a :href="siteUri('member/edit_profile')"><i class="fas fa-edit"></i>{{ $t('message["Edit your profile"]') }}</a></p>
+    </div>
+  </div>
+</article>
+<router-link :to="'/members/' + $route.params.memberId + '/profile'">ユーザーのプロフィールページを見る</router-link>
+<router-link :to="'/members/' + $route.params.memberId + '/posts'">ユーザーの投稿ページを見る</router-link>
   <router-view></router-view>
 </div>
 </script>

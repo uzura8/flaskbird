@@ -38,6 +38,13 @@ def generate_translate_json_en (input_file, output_dir):
                                         {'init_en':True})
     formatter.execute()
 
+@manager.command
+def generate_config_js (output_dir):
+    from app.common.site.util import config_js
+    from app.common.file import put_json_from_dict
+    '''Generate config json file from flask config'''
+    put_json_from_dict(output_dir, config_js())
+
 @manager.option('-b', '--bird', help='Target bird')
 def bird(bird=''):
     ''' Some birds sing '''
