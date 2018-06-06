@@ -20,7 +20,7 @@ class BaseConfig(object):
     IS_DEBUG_LOGGING = False
     IS_SEND_ERROR_REPORT_MAIL = False
     # Modules
-    FBD_MODULES = ['error', 'site', 'member', 'api']
+    FBD_MODULES = ['error', 'site', 'media', 'member', 'api']
     FBD_OPTIONAL_MODULES = []
     # Mail
     MAIL_SERVER = None
@@ -30,4 +30,10 @@ class BaseConfig(object):
     MAIL_PASSWORD = None
     ADMINS = None
     IS_LOGGING_MAIL = False
+
+    # Request params
+    PARAMS_LIST_DEFAULT = {
+        'per_page': 10,
+        'per_page_max': 100,
+    }
 

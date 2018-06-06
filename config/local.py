@@ -6,3 +6,9 @@ class LocalConfig(BaseConfig):
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     SQLALCHEMY_ECHO = True
     IS_LOGGING_MAIL = True
+
+    # Request params
+    PARAMS_LIST_DEFAULT = {
+        'per_page': 3,
+        'per_page_max': 10,
+    }

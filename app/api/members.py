@@ -1,4 +1,4 @@
-from flask import jsonify, request, url_for
+from flask import current_app, jsonify, request, url_for
 from app import db
 from app.member.models import Member
 from . import bp
@@ -15,8 +15,12 @@ def get_member(id):
 @bp.route('/members', methods=['GET'])
 #@token_auth.login_required
 def get_members():
+    param = current_app.config['PARAMS_LIST_DEFAULT'];
     page = request.args.get('page', 1, type=int)
-    per_page = min(request.args.get('per_page', 10, type=int), 100)
-    data = Member.to_collection_dict(Member.query, page, per_page, 'api.get_members')
+    per_page = min(
+            request.args.get('per_page', param['per_page'], type=int),
+            param['per_page_max'])
+    data = Member.to_collection_dict(Member.query, page,
+                                    per_page, 'api.get_members')
     return jsonify(data)
 
