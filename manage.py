@@ -16,7 +16,7 @@ def db_create():
 @manager.command
 def db_create_member(name, email, password):
     '''Create member'''
-    from app.models.member import Member
+    from app.member.models import Member
     member = Member(name=name, email=email, password=password)
     member.set_password(password)
     db.session.add(member)

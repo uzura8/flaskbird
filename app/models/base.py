@@ -2,15 +2,21 @@ from datetime import datetime
 from flask import url_for
 from app import db
 
-class Base(db.Model):
-    __abstract__ = True
+class TimestampMixin(object):
+    created_at = db.Column(
+        db.DateTime, nullable=False, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow)
 
-    created_at = db.Column(db.DateTime, default=datetime.now())
-    updated_at = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
+#class BaseDefault(db.Model):
+#    __abstract__ = True
+#
+#    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+#    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
+#
+#    #def __init__(self):
+#    #    self.created_at = datetime.utcnow()
+#    #    self.updated_at = datetime.utcnow()
 
-    #def __init__(self):
-    #    self.created_at = datetime.utcnow()
-    #    self.updated_at = datetime.utcnow()
 
 class PaginatedAPIMixin(object):
     @staticmethod

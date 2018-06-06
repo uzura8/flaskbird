@@ -5,15 +5,16 @@ from hashlib import md5
 import jwt
 from flask_login import UserMixin
 from flask import current_app, url_for
-from app.models.base import Base, PaginatedAPIMixin
+from app.models.base import TimestampMixin, PaginatedAPIMixin
 from app import db, login
 
-class Member(UserMixin, Base, PaginatedAPIMixin, db.Model):
+class Member(UserMixin, TimestampMixin, PaginatedAPIMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(64), index=True, unique=True)
-    email = db.Column(db.String(128), index=True, unique=True)
-    password = db.Column(db.String(128))
-    self_introduction = db.Column(db.String(512))
+    name = db.Column(db.String(64), nullable=False, index=True, unique=True)
+    email = db.Column(db.String(128), nullable=False, index=True, unique=True)
+    password = db.Column(db.String(128), nullable=False)
+    self_introduction = db.Column(db.Text)
+    file_name = db.Column(db.String(64))
     last_login = db.Column(db.DateTime, default=datetime.utcnow)
     last_access = db.Column(db.DateTime, default=datetime.utcnow)
 
