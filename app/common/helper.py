@@ -1,21 +1,23 @@
 import os
 import hashlib
-from .file import get_file_time
 from flask import current_app, g
+from .file import get_file_time
+from .site.util import static_dir_path
 
 def url_static(under_static_path):
+    uri_path = static_dir_path(under_static_path)
     env = current_app.config['FLASKBIRD_ENV']
-    static_dir_path = current_app.static_url_path
-    items = ['app', static_dir_path.strip(os.sep)]
-    items.extend(under_static_path.strip(os.sep).split(os.sep))
-    path = os.path.join(*items)
-    if not os.path.isfile(path):
-        return ''
-
     if env in ['prod', 'stg']:
         if not g.asset_hash:
-            g.assset_hash =  hashlib.md5(current_app.config['FLASKBIRD_ENV']).hexdigest()
+            app_ver = current_app.config['FLASKBIRD_VERSION']
+            g.assset_hash =  hashlib.md5(app_ver).hexdigest()
         asset_hash = g.assset_hash
     else:
-        asset_hash = get_file_time(path)
-    return '{}/{}?{}'.format(static_dir_path, under_static_path, asset_hash)
+        os_path = os.path.join('app', uri_path.lstrip('/'))
+        asset_hash = get_file_time(os_path)
+    return '{}?{}'.format(uri_path, asset_hash)
+
+def url_media(file_name, size_type='raw', type='photo'):
+    media_name = current_app.config['MEDIA_DIR_NAME']
+    return static_dir_path('{}/{}/{}/{}'.format(media_name, type,
+                                                size_type, file_name))

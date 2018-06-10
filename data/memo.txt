@@ -14,19 +14,19 @@ pip freeze
 * babel.cfg の定義に基づき、翻訳対象箇所を抽出する
 
 ````
-pybabel extract -F babel.cfg -k _l -o messages.pot .
+pybabel extract -F babel.cfg -k _l -o var/tmp/translations/messages.pot .
 ````
 
 * 指定の言語の言語ファイルを作成する
     + 初回
 
 ````
-pybabel init -i messages.pot -d app/translations -l ja creating catalog app/translations/ja/LC_MESSAGES/messages.po based on var/tmp/messages.pot
+pybabel init -i messages.pot -d app/translations -l ja creating catalog app/translations/ja/LC_MESSAGES/messages.po based on var/tmp/translations/messages.pot
 ````
     + 更新時
 
 ````
-pybabel update -i var/tmp/messages.pot -d app/translations
+pybabel update -i var/tmp/translations/messages.pot -d app/translations
 ````
 
 * 言語ファイルを編集する

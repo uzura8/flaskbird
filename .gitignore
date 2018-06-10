@@ -1,6 +1,7 @@
 *.pyc
 /venv/*
 __pycache__
+tags
 instance/
 /migrations/
 /logs/*
@@ -9,4 +10,5 @@ instance/
 package-lock.json
 /node_modules/*
 /app/statics/*/*.map
+/app/statics/media/*
 

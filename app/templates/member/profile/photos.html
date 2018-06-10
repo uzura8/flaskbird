@@ -1,0 +1,14 @@
+[% extends "base.html" %]
+
+[% block content %]
+
+[% if current_user.file_name %]
+<img src="[[ url_media(current_user.file_name) ]]" alt="[[ current_user.name ]]">
+[% endif %]
+
+<form method="post" action="[[ url_for('member.profile_photos_upload') ]]" enctype="multipart/form-data">
+  <input type="file" id="profile_photo" name="profile_photo">
+  <input type="submit" value="[[ _('Send') ]]" class="btn">
+</form>
+
+[% endblock %]

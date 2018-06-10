@@ -23,3 +23,7 @@ def get_file_time(path, type='edit'):
     elif type == 'create':
         return os.path.getctime(abs_path)
     return os.path.getmtime(abs_path)
+
+def get_ext(filename, is_lower=True):
+    ext = filename.rsplit('.', 1)[1]
+    return ext.lower() if is_lower else ext

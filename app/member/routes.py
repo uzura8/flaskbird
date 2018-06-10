@@ -1,12 +1,19 @@
+import os
+import base64
 from datetime import datetime
-from flask import render_template, request, redirect, url_for, flash
+#from werkzeug import secure_filename
+from flask import current_app, render_template, request, redirect, \
+    url_for, flash
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_babel import _
 from app import db
+from app.common.file import get_ext
+from app.common.site.util import media_file_name, media_dir_path
 from app.site import site_before_request
 from . import site_auth_check
 from app.member import bp
 from app.email import send_password_reset_email
+from app.media.models import File, FileBin
 from app.member.models import Member
 from app.member.forms import(
     LoginForm,
@@ -106,5 +113,47 @@ def edit_profile():
     elif request.method == 'GET':
         form.name.data = current_user.name
         form.self_introduction.data = current_user.self_introduction
-    return render_template('member/edit_profile.html', title='Edit Profile',
+    return render_template('member/edit_profile.html', title=_('Edit Profile'),
                            form=form)
+
+@bp.route('/profile/photos', methods=['GET'])
+def profile_photos():
+    return render_template('member/profile/photos.html',
+                            title=_('Profile Photos'))
+
+@bp.route('/profile/photos/upload', methods=['POST'])
+@login_required
+def profile_photos_upload():
+    if 'profile_photo' not in request.files:
+        flash(_('File not selected.'))
+        return redirect(url_for('member.profile_photos'))
+    uploaded = request.files['profile_photo']
+
+    ext = get_ext(uploaded.filename)
+    if ext not in current_app.config['UPLOAD_PHOTO_ALLOWED_EXTS']:
+        flash(_('File type is not allowed.'))
+        return redirect(url_for('member.profile_photos'))
+
+    filename = media_file_name('m', current_user.id, ext)
+    path = media_dir_path('photo', filename, 'raw')
+    try:
+        uploaded.save(path)
+        with open(path, 'rb') as imageFile:
+            bin_data = base64.b64encode(imageFile.read())
+            file_bin = FileBin(
+                name=filename,
+                bin=bin_data)
+            db.session.add(file_bin)
+        file = File(
+            user_type='member',
+            name=filename,
+            original_name=uploaded.filename,
+            type=uploaded.mimetype,
+            size=os.stat(path).st_size)
+        db.session.add(file)
+        current_user.file_name = filename
+    except Exception:
+        db.session.rollback()
+        raise
+    db.session.commit()
+    return redirect(url_for('member.profile_photos'))

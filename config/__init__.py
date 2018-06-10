@@ -37,3 +37,8 @@ class BaseConfig(object):
         'per_page_max': 100,
     }
 
+    # Upload
+    MAX_CONTENT_LENGTH = 3 * 1024 * 1024
+    MEDIA_DIR_NAME = 'media'
+    UPLOAD_SPLIT_DIRS_COUNT = 10
+    UPLOAD_PHOTO_ALLOWED_EXTS = ['png', 'jpg', 'jpeg', 'gif']
