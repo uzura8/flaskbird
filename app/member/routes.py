@@ -137,6 +137,9 @@ def profile_photos_upload():
     filename = media_file_name('m', current_user.id, ext)
     path = media_dir_path('photo', filename, 'raw')
     try:
+        save_path = os.path.dirname(path)
+        if not os.path.exists(save_path):
+            os.makedirs(save_path)
         uploaded.save(path)
         with open(path, 'rb') as imageFile:
             bin_data = base64.b64encode(imageFile.read())
