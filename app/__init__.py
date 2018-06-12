@@ -35,8 +35,10 @@ def create_app():
 
     from instance.config import FLASKBIRD_ENV
     env = FLASKBIRD_ENV
+    
     app.config.from_object('config.{}.{}Config'.format(env, env.capitalize()))
     app.config.from_pyfile('config.py') #from instance dir
+    app.config['ENV'] = env
 
     db.init_app(app)
     migrate.init_app(app, db)
