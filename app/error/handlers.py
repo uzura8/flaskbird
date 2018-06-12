@@ -1,12 +1,22 @@
 from flask import render_template
 from app import db
-from app.error import bp
+from . import bp
 
-@bp.errorhandler(400)
-@bp.errorhandler(404)
-@bp.errorhandler(500)
-def error_handler(error):
-    if error == 500:
-        db.session.rollback()
-    return render_template('error/{}.html'.format(error)), error
-    
+@bp.app_errorhandler(400)
+def bad_request_error(error):
+    #if wants_json_response():
+    #    return api_error_response(404)
+    return render_template('error/400.html'), 400
+
+@bp.app_errorhandler(404)
+def not_found_error(error):
+    #if wants_json_response():
+    #    return api_error_response(404)
+    return render_template('error/404.html'), 404
+
+@bp.app_errorhandler(500)
+def internal_error(error):
+    db.session.rollback()
+    #if wants_json_response():
+    #    return api_error_response(500)
+    return render_template('error/500.html'), 500
