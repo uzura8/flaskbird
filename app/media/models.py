@@ -1,4 +1,5 @@
 import enum
+import base64
 from datetime import datetime
 from app import db
 from app.models.base import TimestampMixin
@@ -19,4 +20,7 @@ class FileBin(db.Model):
 
     name = db.Column(db.String(64), primary_key=True)
     bin = db.Column(db.LargeBinary(length=(2**32)-1))
+
+    def get_bin(self):
+        return base64.b64decode(self.bin)
 

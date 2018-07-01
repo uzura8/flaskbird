@@ -2,13 +2,11 @@ import os
 import base64
 from datetime import datetime
 #from werkzeug import secure_filename
-from flask import current_app, render_template, request, redirect, \
-    url_for, flash
+from flask import render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_babel import _
-from app import db
-from app.common.file import get_ext
-from app.common.site.util import media_file_name, media_dir_path
+from app import db, NotAcceptableException
+from app.common.site.media import upload_image
 from app.site import site_before_request
 from . import site_auth_check
 from app.member import bp
@@ -128,19 +126,8 @@ def profile_photos_upload():
         flash(_('File not selected.'))
         return redirect(url_for('member.profile_photos'))
     uploaded = request.files['profile_photo']
-
-    ext = get_ext(uploaded.filename)
-    if ext not in current_app.config['UPLOAD_PHOTO_ALLOWED_EXTS']:
-        flash(_('File type is not allowed.'))
-        return redirect(url_for('member.profile_photos'))
-
-    filename = media_file_name('m', current_user.id, ext)
-    path = media_dir_path('photo', filename, 'raw')
     try:
-        save_path = os.path.dirname(path)
-        if not os.path.exists(save_path):
-            os.makedirs(save_path)
-        uploaded.save(path)
+        path, filename = upload_image(uploaded, 'photo', 'm', current_user.id)
         with open(path, 'rb') as imageFile:
             bin_data = base64.b64encode(imageFile.read())
             file_bin = FileBin(
@@ -155,8 +142,12 @@ def profile_photos_upload():
             size=os.stat(path).st_size)
         db.session.add(file)
         current_user.file_name = filename
+    except NotAcceptableException:
+        flash(_('Uploaded file is not allowed.'))
+        return redirect(url_for('member.profile_photos'))
     except Exception:
         db.session.rollback()
         raise
     db.session.commit()
     return redirect(url_for('member.profile_photos'))
+

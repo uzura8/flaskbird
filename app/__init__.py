@@ -8,6 +8,7 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_babel import Babel, lazy_gettext as _l
+from werkzeug.exceptions import HTTPException
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -87,4 +88,20 @@ def create_app():
 @babel.localeselector
 def get_locale():
     return request.accept_languages.best_match(current_app.config['LANGUAGES'])
+
+class InvalidArgumentException(HTTPException):
+    code = 400
+    description = 'Invalid Argument'
+
+class InvalidParameterException(HTTPException):
+    code = 400
+    description = 'Invalid Parameter'
+
+class InvalidMediaPathException(HTTPException):
+    code = 400
+    description = 'Invalid media File path'
+
+class NotAcceptableException(HTTPException):
+    code = 406
+    description = 'Not Acceptable'
 

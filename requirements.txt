@@ -9,4 +9,5 @@ Flask-WTF
 WTForms
 Flask-Mail
 PyJWT
+Pillow
 Flask-Babel
