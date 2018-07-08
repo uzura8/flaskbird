@@ -47,9 +47,9 @@ class BaseConfig(object):
                 'jpeg':'image/jpeg',
                 'jpg':'image/jpeg',
                 'png':'image/png',
-                'gif':'image/fif',
+                'gif':'image/gif',
             },
-            'sizes':{},
+            'sizes':['200x200xc', '600x600'],
         }
     }
 

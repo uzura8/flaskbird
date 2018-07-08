@@ -1,10 +1,10 @@
 import os
 import uuid
-import base64
 from flask import current_app
-from app import db, InvalidMediaPathException, NotAcceptableException
+from app import InvalidMediaPathException, NotAcceptableException
 from .util import static_dir_path
 from app.common.file import get_ext, write_file
+from app.common.image import Image
 from app.media.models import File, FileBin
 
 def media_file_name(group, id, ext):
@@ -12,10 +12,30 @@ def media_file_name(group, id, ext):
     randam = uuid.uuid4().hex
     return '{}{}.{}'.format(prefix, randam, ext)
 
+
+def media_photo_size_infos(size_str):
+    accept_sizes = current_app.config['UPLOAD_ALLOWED_MEDIA']['photo']['sizes']
+    if size_str not in accept_sizes:
+        raise InvalidMediaPathException
+    items = size_str.split('x')
+    if len(items) < 2:
+        raise InvalidMediaPathException
+    infos = {'width':int(items[0]), 'height':int(items[1])}
+    infos['type'] = 'resize'
+    try:
+        if items[2] == 'c':
+            infos['type'] = 'crop'
+    except IndexError:
+        pass
+
+    return infos
+
+
 def media_file_prefix(group, id):
     sprit_count = current_app.config['UPLOAD_SPLIT_DIRS_COUNT']
     split_id = id % sprit_count
     return '{}_{}_'.format(group, split_id)
+
 
 def media_dir_path(type='', file_name='', size='', os_path=False):
     items = []
@@ -41,6 +61,7 @@ def media_dir_path(type='', file_name='', size='', os_path=False):
     items.extend(file_name_parts)
 
     return static_dir_path(items, os_path)
+
 
 def media_infos_by_req(request_path):
     # ex: /media/photo/120x120/m/1/******.jpg
@@ -68,16 +89,33 @@ def media_infos_by_req(request_path):
 
     return infos
 
+
 def make_media_file(type, name, size='raw'):
-    path = media_dir_path(type, name, size, True)
-    file_bin = FileBin.query.get(name)
-    file = File.query.get(name)
-    if not file_bin or not file:
-        raise InvalidMediaPathException
-    bin = file_bin.get_bin()
-    content_type = file.type
-    write_file(path, bin, 'wb')
+    ext = get_ext(name)
+    content_type = current_app.config['UPLOAD_ALLOWED_MEDIA'][type]['types'][ext]
+    raw_path = media_dir_path(type, name, 'raw', True)
+    if not os.path.exists(raw_path):
+        file_bin = FileBin.query.get(name)
+        file = File.query.get(name)
+        if not file_bin or not file:
+            raise InvalidMediaPathException
+        raw_bin = file_bin.get_bin()
+        content_type = file.type
+        write_file(raw_path, raw_bin, 'wb')
+
+    if type == 'photo' and size != 'raw':
+        path = media_dir_path(type, name, size, True)
+        image = Image(raw_path, path)
+        size_infos = media_photo_size_infos(size)
+        image.resize(**size_infos)
+        with open(path, 'rb') as image:
+            bin = image.read()
+    else:
+        path = raw_path
+        bin = raw_bin
+
     return path, name, content_type, bin
+
 
 def upload_image(file_strage, type, group, id):
     accepted_types = current_app.config['UPLOAD_ALLOWED_MEDIA'][type]['types']
