@@ -16,9 +16,12 @@ class Image():
         self.output_path = output_path
         dir_path = os.path.dirname(self.output_path)
         makedirs(dir_path)
+        self.exifs = {}
+        self.set_exifs()
 
 
     def resize(self, width, height, type='relative'):
+        self.rotate()
         if type == 'crop':
             self.resize_square_crop(width)
         else:
@@ -30,6 +33,28 @@ class Image():
         if format == 'json':
             return json.dumps(self.exifs)
         return self.exifs
+
+
+    def get_exif_value(self, exif_tag):
+        try:
+            return self.exifs[exif_tag]
+        except IndexError:
+            return None
+
+
+    def rotate(self):
+        convert_image = {
+            1: lambda img: img,
+            2: lambda img: img.transpose(pil_image.FLIP_LEFT_RIGHT),
+            3: lambda img: img.transpose(pil_image.ROTATE_180),
+            4: lambda img: img.transpose(pil_image.FLIP_TOP_BOTTOM),
+            5: lambda img: img.transpose(pil_image.FLIP_LEFT_RIGHT).transpose(pil_image.ROTATE_90),
+            6: lambda img: img.transpose(pil_image.ROTATE_270),
+            7: lambda img: img.transpose(pil_image.FLIP_LEFT_RIGHT).transpose(pil_image.ROTATE_270),
+            8: lambda img: img.transpose(pil_image.ROTATE_90),
+        }
+        orientation = self.get_exif_value('Orientation')
+        self.img = convert_image[orientation](self.img)
 
 
     def save(self):
@@ -66,7 +91,6 @@ class Image():
         self.img.thumbnail((size, size), pil_image.ANTIALIAS)
 
     def set_exifs(self):
-        self.exifs = {}
         if self.img.format != 'jpeg':
             pass
 
