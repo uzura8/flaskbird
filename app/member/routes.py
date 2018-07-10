@@ -7,6 +7,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from flask_babel import _
 from app import db, NotAcceptableException
 from app.common.site.media import upload_image
+from app.common.image import Image
 from app.site import site_before_request
 from . import site_auth_check
 from app.member import bp
@@ -134,11 +135,15 @@ def profile_photos_upload():
                 name=filename,
                 bin=bin_data)
             db.session.add(file_bin)
+
+        image = Image(path)
+        exifs = image.get_exifs('json')
         file = File(
             user_type='member',
             name=filename,
             original_name=uploaded.filename,
             type=uploaded.mimetype,
+            exif=exifs,
             size=os.stat(path).st_size)
         db.session.add(file)
         current_user.file_name = filename

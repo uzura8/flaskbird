@@ -1,6 +1,9 @@
 import os
+import json
 from PIL import Image as pil_image
+from PIL.ExifTags import TAGS
 from app.common.file import makedirs
+from app.common.util import remove_bytes_value
 
 class Image():
 
@@ -8,7 +11,6 @@ class Image():
         mode = 'r'
         if not output_path:
             output_path = input_path
-            mode = 'w'
         self.remove_profile = remove_profile
         self.img = pil_image.open(input_path, mode)
         self.output_path = output_path
@@ -22,6 +24,12 @@ class Image():
         else:
             self.resize_relative(width, height)
         self.save()
+
+
+    def get_exifs(self, format='json'):
+        if format == 'json':
+            return json.dumps(self.exifs)
+        return self.exifs
 
 
     def save(self):
@@ -56,4 +64,21 @@ class Image():
             box = (left, top, right, bottom)
         self.img = self.img.crop(box)
         self.img.thumbnail((size, size), pil_image.ANTIALIAS)
+
+    def set_exifs(self):
+        self.exifs = {}
+        if self.img.format != 'jpeg':
+            pass
+
+        try:
+            exif = self.img._getexif()
+        except AttributeError:
+            pass
+
+        for tag_id, values in exif.items():
+            values = remove_bytes_value(values)
+            if values is None:
+                continue
+            tag = TAGS.get(tag_id, tag_id)
+            self.exifs[tag] = values
 
