@@ -2,9 +2,9 @@ import os
 import uuid
 from flask import current_app
 from app import InvalidMediaPathException, NotAcceptableException
-from .util import static_dir_path
 from app.common.file import get_ext, write_file
 from app.common.image import Image
+from app.common.site.util import static_dir_path
 from app.media.models import File, FileBin
 
 def media_file_name(group, id, ext):

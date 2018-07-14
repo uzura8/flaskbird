@@ -3,7 +3,7 @@
 [% block content %]
 
 [% if current_user.file_name %]
-<img src="[[ url_media(current_user.file_name) ]]" alt="[[ current_user.name ]]">
+<img src="[[ url_media(current_user.file_name, '600x600') ]]" alt="[[ current_user.name ]]">
 [% endif %]
 
 <form method="post" action="[[ url_for('member.profile_photos_upload') ]]" enctype="multipart/form-data">

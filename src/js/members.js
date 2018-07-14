@@ -27,9 +27,16 @@ Vue.filter('moment', function (date) {
   return moment(date).format('LLL');
 });
 
+Vue.mixin({
+  methods: {
+    siteUri: site.uri,
+    mediaUri: site.mediaUri,
+    getCurrentUser: site.getCurrentUser
+  }
+});
+
 var VueRouter = require('vue-router');
 Vue.use(VueRouter);
-
 
 var uriPrefix = '/members';
 var MemberList = {
@@ -80,7 +87,7 @@ var Member = {
   },
   // 初期化時にデータを取得する
   created: function () {
-    this.currentUser = site.currentUser();
+    this.currentUser = this.getCurrentUser();
     this.fetchData()
   },
   // ルーティング変更時に再度データ取得するために$routeの変更をwatch
@@ -101,9 +108,6 @@ var Member = {
         this.error = error.toString()
         this.loading = false
       });
-    },
-    siteUri: function (path) {
-      return site.uri(path);
     }
   }
 }

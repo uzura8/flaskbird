@@ -2,7 +2,7 @@
         <b-dropdown position="is-bottom-left" v-cloak>
           <button class="button is-primary" slot="trigger">
             <i class="icon is-24x24">
-              <img src="[[ current_user.avatar(128) ]]">
+              <img src="[[ url_media(current_user.file_name, '200x200xc') ]]" alt="[[ current_user.name ]]">
             </i>
             <span class="is-hidden-touch">[[ current_user.name ]]</span>
             <i class="icon fas fa-caret-down"></i>

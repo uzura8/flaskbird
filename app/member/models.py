@@ -46,6 +46,7 @@ class Member(UserMixin, TimestampMixin, PaginatedAPIMixin, db.Model):
         data = {
             'id': self.id,
             'name': self.name,
+            'file_name': self.file_name,
             #'last_access': self.last_access.isoformat() + 'Z',
             #'last_login': self.last_login.isoformat() + 'Z',
             'last_access': self.last_access,

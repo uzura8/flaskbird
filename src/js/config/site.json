@@ -1,1 +1,1 @@
-{"BASE_URL": "/", "FBD_SITE_NAME": "FlaskBird"}
+{"BASE_URL": "/", "FBD_SITE_NAME": "FlaskBird", "MEDIA_DIR_PATH": "/statics/media"}

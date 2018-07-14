@@ -1,11 +1,12 @@
 import os
 from flask import url_for, current_app
-from ..util import is_array
+from app.common.util import is_array
 
 def config_js():
     return {
         'BASE_URL': url_for('site.index'),
         'FBD_SITE_NAME': 'FlaskBird',
+        'MEDIA_DIR_PATH': static_dir_path(current_app.config['MEDIA_DIR_NAME']),
     }
 
 def static_dir_path(under_path='', os_path=False):
