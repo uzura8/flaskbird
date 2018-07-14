@@ -11,6 +11,7 @@ module.exports = [
     entry: {
       default: path.join(root, 'src/js/default.js'),
       members: path.join(root, 'src/js/members.js'),
+      member: path.join(root, 'src/js/member.js'),
     },
     output: {
       path: path.join(root, 'app/statics/js'),

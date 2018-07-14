@@ -3,12 +3,32 @@
 [% block content %]
 
 [% if current_user.file_name %]
-<img src="[[ url_media(current_user.file_name, '600x600') ]]" alt="[[ current_user.name ]]">
+<figure>
+  <img class="u-center-block" src="[[ url_media(current_user.file_name, '600x600') ]]" alt="[[ current_user.name ]]">
+</figure>
 [% endif %]
 
 <form method="post" action="[[ url_for('member.profile_photos_upload') ]]" enctype="multipart/form-data">
-  <input type="file" id="profile_photo" name="profile_photo">
-  <input type="submit" value="[[ _('Send') ]]" class="btn">
+  <div class="field">
+    <div class="file has-name">
+      <label class="file-label">
+        <input type="file" id="profile_photo" class="file-input" name="profile_photo">
+        <span class="file-cta">
+          <span class="file-icon">
+            <i class="fas fa-upload"></i>
+          </span>
+          <span class="file-label">Choose a file…</span>
+        </span>
+        <span class="file-name" id="profile_photo_filename"></span>
+      </label>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control"><input type="submit" value="[[ _('Send') ]]" class="button is-primary"></div>
+  </div>
 </form>
+[% endblock %]
 
+[% block footer_script %]
+<script src="[[ url_static('js/member.js')  ]]"></script>
 [% endblock %]
