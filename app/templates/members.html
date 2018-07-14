@@ -61,7 +61,7 @@
         <small v-if="member.last_access">{{ $t('message["Last seen on"]') }}: {{ member.last_access | moment}}</small>
       </div>
       <p v-if="member.id == currentUser.id"><a :href="siteUri('member/edit_profile')"><i class="fas fa-edit"></i>{{ $t('message["Edit your profile"]') }}</a></p>
-      <p v-if="member.id == currentUser.id"><a :href="siteUri('member/profile/photos')"><i class="fas fa-edit"></i>{{ $t('message["Profile photo"]') }}</a></p>
+      <p v-if="member.id == currentUser.id"><a :href="siteUri('member/profile/photos')"><i class="fas fa-edit"></i>{{ $t('message["Edit your profile photo"]') }}</a></p>
     </div>
   </div>
 </article>
