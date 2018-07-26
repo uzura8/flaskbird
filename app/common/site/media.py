@@ -22,11 +22,10 @@ def media_photo_size_infos(size_str):
         raise InvalidMediaPathException
     infos = {'width':int(items[0]), 'height':int(items[1])}
     infos['type'] = 'resize'
-    try:
+
+    if len(items) == 3:
         if items[2] == 'c':
             infos['type'] = 'crop'
-    except IndexError:
-        pass
 
     return infos
 

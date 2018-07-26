@@ -36,10 +36,7 @@ class Image():
 
 
     def get_exif_value(self, exif_tag):
-        try:
-            return self.exifs[exif_tag]
-        except IndexError:
-            return None
+        return self.exifs.get(exif_tag)
 
 
     def rotate(self):
