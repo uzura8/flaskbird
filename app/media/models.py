@@ -14,6 +14,24 @@ class File(TimestampMixin, db.Model):
     original_name = db.Column(db.String(128), nullable=False)
     exif = db.Column(db.Text)
     shot_at = db.Column(db.DateTime, default=datetime.utcnow)
+    is_delete = db.Column(db.Boolean, nullable=False, default=False)
+
+    def soft_delete(self):
+        self.is_delete = True
+
+    def check_deleted(self):
+        return self.is_delete
+
+@db.event.listens_for(File, 'after_update')
+def receive_after_update(mapper, connection, target):
+    if not target.check_deleted():
+        return
+    from app.common.site.media import delete_media_file_caches, \
+                                        media_group_by_mimetype
+    media_group = media_group_by_mimetype(target.type)
+    if media_group != 'photo':
+        return
+    delete_media_file_caches(media_group, target.name)
 
 class FileBin(db.Model):
     __tablename__ = 'file_bin'
@@ -23,4 +41,3 @@ class FileBin(db.Model):
 
     def get_bin(self):
         return base64.b64decode(self.bin)
-

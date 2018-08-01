@@ -135,9 +135,14 @@ def profile_photos_upload():
                 name=filename,
                 bin=bin_data)
             db.session.add(file_bin)
-
         image = Image(path)
         exifs = image.get_exifs('json')
+
+        if current_user.file_name:
+            file_current = File.query.get(current_user.file_name)
+            if file_current and not file_current.check_deleted():
+                file_current.soft_delete()
+
         file = File(
             user_type='member',
             name=filename,
@@ -154,5 +159,22 @@ def profile_photos_upload():
         db.session.rollback()
         raise
     db.session.commit()
+    return redirect(url_for('member.profile_photos'))
+
+@bp.route('/profile/photos/delete', methods=['POST'])
+@login_required
+def profile_photos_delete():
+    file = File.query.get(current_user.file_name)
+    if not file or file.check_deleted():
+        flash(_('Profile Photo not set.'))
+        return redirect(url_for('member.profile_photos'))
+    try:
+        file.soft_delete()
+    except Exception:
+        db.session.rollback()
+        raise
+    current_user.file_name = ''
+    db.session.commit()
+    flash(_('Profile Photo has been deleted.'))
     return redirect(url_for('member.profile_photos'))
 

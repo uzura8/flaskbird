@@ -14,10 +14,10 @@ def not_found_error(error):
     media_infos = media_infos_by_req(request.path)
     if media_infos:
         try:
-            path, name, content_type, bin = make_media_file(**media_infos)
+            path, name, mimetype, bin = make_media_file(**media_infos)
             response = helpers.make_response(bin)
-            if media_infos['type'] == 'photo':
-                response.headers['Content-type'] = content_type
+            if media_infos['group'] == 'photo':
+                response.headers['Content-type'] = mimetype
             return response
         except InvalidMediaPathException as e:
             return render_template('error/400.html'), 400

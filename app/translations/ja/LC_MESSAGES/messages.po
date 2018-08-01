@@ -176,3 +176,14 @@ msgstr "新しいパスワードを設定する"
 msgid "Reset Password"
 msgstr "パスワード再設定手続き"
 
+msgid "Not registered"
+msgstr "未登録です"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Send"
+msgstr "送信"
+
+msgid "Choose a photo"
+msgstr "写真を選ぶ"

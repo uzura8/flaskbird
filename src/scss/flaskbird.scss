@@ -19,6 +19,12 @@ dl.c-horizontal {
   }
 }
 
+button {
+  > .fas {
+    margin-right: 0.25rem;
+  }
+}
+
 #navbar-member-desktop {
   .modal-card {
     width: 300px;

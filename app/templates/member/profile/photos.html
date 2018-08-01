@@ -1,11 +1,23 @@
 [% extends "base.html" %]
 
 [% block content %]
+<h1 class="title">[[ _('Profile Photos') ]]</h1>
 
 [% if current_user.file_name %]
 <figure>
   <img class="u-center-block" src="[[ url_media(current_user.file_name, '600x600') ]]" alt="[[ current_user.name ]]">
 </figure>
+<form method="post" action="[[ url_for('member.profile_photos_delete') ]]">
+  <div class="field">
+    <div class="control">
+      <button type="submit" class="button is-danger">
+        <i class="fas fa-trash-alt"></i>[[ _('Delete') ]]
+      </button>
+    </div>
+  </div>
+</form>
+[% else %]
+<p>[[ _('Not registered') ]]</p>
 [% endif %]
 
 <form method="post" action="[[ url_for('member.profile_photos_upload') ]]" enctype="multipart/form-data">
@@ -15,16 +27,20 @@
         <input type="file" id="profile_photo" class="file-input" name="profile_photo">
         <span class="file-cta">
           <span class="file-icon">
-            <i class="fas fa-upload"></i>
+            <i class="fas fa-image"></i>
           </span>
-          <span class="file-label">Choose a file…</span>
+          <span class="file-label">[[ _('Choose a photo') ]]</span>
         </span>
         <span class="file-name" id="profile_photo_filename"></span>
       </label>
     </div>
   </div>
   <div class="field">
-    <div class="control"><input type="submit" value="[[ _('Send') ]]" class="button is-primary"></div>
+    <div class="control">
+      <button type="submit" class="button is-primary">
+        <i class="fas fa-upload"></i>[[ _('Send') ]]
+      </button>
+    </div>
   </div>
 </form>
 [% endblock %]
