@@ -40,6 +40,7 @@ class BaseConfig(object):
     # Upload
     MAX_CONTENT_LENGTH = 3 * 1024 * 1024
     MEDIA_DIR_NAME = 'media'
+    NOIMAGE_FILE_NAME = 'noimage.png'
     UPLOAD_SPLIT_DIRS_COUNT = 10
     UPLOAD_ALLOWED_MEDIA = {
         'photo':{

@@ -1,3 +1,17 @@
+*~
+*.bak
+.buildpath
+.project
+.settings
+*.tmproj
+build
+.idea
+nbproject/
+tags
+.DS_Store
+Thumbs.db
+desktop.ini
+
 *.pyc
 /venv/*
 __pycache__

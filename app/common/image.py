@@ -51,6 +51,8 @@ class Image():
             8: lambda img: img.transpose(pil_image.ROTATE_90),
         }
         orientation = self.get_exif_value('Orientation')
+        if not orientation:
+            return;
         self.img = convert_image[orientation](self.img)
 
 
@@ -88,13 +90,13 @@ class Image():
         self.img.thumbnail((size, size), pil_image.ANTIALIAS)
 
     def set_exifs(self):
-        if self.img.format != 'jpeg':
-            pass
+        if self.img.format.lower() != 'jpeg':
+            return
 
         try:
             exif = self.img._getexif()
         except AttributeError:
-            pass
+            return
 
         for tag_id, values in exif.items():
             values = remove_bytes_value(values)

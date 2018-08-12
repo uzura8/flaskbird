@@ -50,7 +50,7 @@ def media_file_prefix(file_group='', id=0):
     return '_'.join(items)
 
 
-def media_dir_path(group='', file_name='', size='', os_path=False):
+def media_path(group='', file_name='', size='', os_path=False, noimage=False):
     items = []
     # ex:  /media
     items.append(current_app.config['MEDIA_DIR_NAME'])
@@ -67,32 +67,33 @@ def media_dir_path(group='', file_name='', size='', os_path=False):
     items.append(size)
 
     if not file_name:
-        # ex: /static/media/photo/120x120
+        # ex: /media/photo/120x120
+        if noimage:
+            # ex: /media/photo/120x120/noimage.png
+            items.append(current_app.config['NOIMAGE_FILE_NAME'])
         return static_dir_path(items, os_path)
-    file_name_parts = file_name.split('_')
-    # ex: /media/photo/120x120/m/1/******.jpg
-    items.extend(file_name_parts)
 
+    file_name_items = file_name.split('_')
+    # ex: /media/photo/120x120/m/1/******.jpg
+    items.extend(file_name_items)
     return static_dir_path(items, os_path)
 
 
 def media_infos_by_req(request_path):
     # ex: /media/photo/120x120/m/1/******.jpg
-    media_root_dir = media_dir_path()
+    media_root_dir = media_path()
     if not request_path.startswith(media_root_dir):
-        return
+        raise InvalidMediaPathException
 
     items = request_path.replace(media_root_dir, '', 1).strip('/').split('/')
     # ex: ['photo' ,'120x120' ,'m' ,'1' ,'******.jpg']
-    if not items or len(items) < 4:
+    if not items or len(items) < 3:
         raise InvalidMediaPathException
 
     group = items.pop(0)
     infos = {'group':group}
     # ex: {'group':'photo'}
     if infos['group'] == 'photo':
-        if not len(items) < 5:
-            raise InvalidMediaPathException
         size = items.pop(0)
         infos['size'] = size
         # ex: {'group':'photo', 'size':'120x120'}
@@ -106,20 +107,24 @@ def media_infos_by_req(request_path):
 def make_media_file(group, name, size='raw'):
     ext = get_ext(name)
     mimetype = current_app.config['UPLOAD_ALLOWED_MEDIA'][group]['types'][ext]
-    raw_path = media_dir_path(group, name, 'raw', True)
+    raw_path = media_path(group, name, 'raw', True, True)
     if not os.path.exists(raw_path):
-        file = File.query.get(name)
-        if not file or file.check_deleted():
-            raise InvalidMediaPathException
-        file_bin = FileBin.query.get(name)
-        if not file_bin:
-            raise InvalidMediaPathException
-        raw_bin = file_bin.get_bin()
-        mimetype = file.type
-        write_file(raw_path, raw_bin, 'wb')
+        noimage_name = current_app.config['NOIMAGE_FILE_NAME']
+        if name == noimage_name:
+            raw_path = static_dir_path(['img', noimage_name], True)
+        else:
+            file = File.query.get(name)
+            if not file or file.check_deleted():
+                raise InvalidMediaPathException
+            file_bin = FileBin.query.get(name)
+            if not file_bin:
+                raise InvalidMediaPathException
+            raw_bin = file_bin.get_bin()
+            mimetype = file.type
+            write_file(raw_path, raw_bin, 'wb')
 
     if group == 'photo' and size != 'raw':
-        path = media_dir_path(group, name, size, True)
+        path = media_path(group, name, size, True)
         image = Image(raw_path, path)
         size_infos = media_photo_size_infos(size)
         image.resize(**size_infos)
@@ -144,7 +149,7 @@ def upload_image(file_strage, media_group, file_group, id):
 
     filename = media_file_name(ext, file_group, id)
     size = 'raw' if media_group == 'photo' else None
-    path = media_dir_path(media_group, filename, size, True)
+    path = media_path(media_group, filename, size, True)
     save_path = os.path.dirname(path)
     if not os.path.exists(save_path):
         os.makedirs(save_path)
@@ -155,7 +160,7 @@ def upload_image(file_strage, media_group, file_group, id):
 def delete_media_file_caches(group, name, size=None):
     delete_count = 0
     if group != 'photo':
-        path = media_dir_path(group, name, None, True)
+        path = media_path(group, name, None, True)
         if os.path.exists(path):
             os.remove(path)
             delete_count += 1
@@ -163,7 +168,7 @@ def delete_media_file_caches(group, name, size=None):
 
     sizes = current_app.config['UPLOAD_ALLOWED_MEDIA']['photo']['sizes']
     for size in sizes:
-        path = media_dir_path(group, name, size, True)
+        path = media_path(group, name, size, True)
         if not os.path.exists(path):
             continue
         os.remove(path)

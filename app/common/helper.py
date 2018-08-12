@@ -3,7 +3,7 @@ import hashlib
 from flask import current_app, g
 from app.common.file import get_file_time
 from app.common.site.util import static_dir_path
-from app.common.site.media import media_dir_path
+from app.common.site.media import media_path
 
 def url_static(under_static_path):
     uri_path = static_dir_path(under_static_path)
@@ -19,4 +19,4 @@ def url_static(under_static_path):
     return '{}?{}'.format(uri_path, asset_hash)
 
 def url_media(file_name, size='raw', type='photo'):
-    return media_dir_path(type, file_name, size)
+    return media_path(type, file_name, size, False, True)

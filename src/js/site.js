@@ -13,11 +13,15 @@ module.exports = {
     return JSON.parse(currentUser);
   },
   mediaUri: function (file_name, size, type) {
-    if (!file_name) return;
     size = String(size || 'raw');
     type = String(type || 'photo');
     var mediaPath = configs.MEDIA_DIR_PATH;
-    var items = [mediaPath, type, size].concat(file_name.split('_'));
+    var items = [mediaPath, type, size];
+    if (file_name) {
+      items = items.concat(file_name.split('_'));
+    } else {
+      items.push(configs.NOIMAGE_FILE_NAME);
+    }
     return items.join('/');
   }
 }

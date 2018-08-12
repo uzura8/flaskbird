@@ -5,8 +5,9 @@ from app.common.util import is_array
 def config_js():
     return {
         'BASE_URL': url_for('site.index'),
-        'FBD_SITE_NAME': 'FlaskBird',
+        'FBD_SITE_NAME': current_app.config['FBD_SITE_NAME'],
         'MEDIA_DIR_PATH': static_dir_path(current_app.config['MEDIA_DIR_NAME']),
+        'NOIMAGE_FILE_NAME': current_app.config['NOIMAGE_FILE_NAME']
     }
 
 def static_dir_path(under_path='', os_path=False):
