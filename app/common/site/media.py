@@ -105,23 +105,31 @@ def media_infos_by_req(request_path):
 
 
 def make_media_file(group, name, size='raw'):
+    noimage_name = current_app.config['NOIMAGE_FILE_NAME']
+    noimage_mimetype = current_app.config['UPLOAD_ALLOWED_MEDIA'][group]['types']['png']
+
     ext = get_ext(name)
     mimetype = current_app.config['UPLOAD_ALLOWED_MEDIA'][group]['types'][ext]
     raw_path = media_path(group, name, 'raw', True, True)
     if not os.path.exists(raw_path):
-        noimage_name = current_app.config['NOIMAGE_FILE_NAME']
         if name == noimage_name:
             raw_path = static_dir_path(['img', noimage_name], True)
+            mimetype = noimage_mimetype
         else:
-            file = File.query.get(name)
-            if not file or file.check_deleted():
-                raise InvalidMediaPathException
-            file_bin = FileBin.query.get(name)
-            if not file_bin:
-                raise InvalidMediaPathException
-            raw_bin = file_bin.get_bin()
-            mimetype = file.type
-            write_file(raw_path, raw_bin, 'wb')
+            try:
+                file = File.query.get(name)
+                if not file or file.check_deleted():
+                    raise InvalidMediaPathException
+                file_bin = FileBin.query.get(name)
+                if not file_bin:
+                    raise InvalidMediaPathException
+                raw_bin = file_bin.get_bin()
+                mimetype = file.type
+                write_file(raw_path, raw_bin, 'wb')
+            except InvalidMediaPathException as e:
+                name = noimage_name
+                raw_path = static_dir_path(['img', noimage_name], True)
+                mimetype = noimage_mimetype
 
     if group == 'photo' and size != 'raw':
         path = media_path(group, name, size, True)

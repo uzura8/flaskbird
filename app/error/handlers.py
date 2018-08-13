@@ -1,5 +1,5 @@
 from flask import render_template, request, helpers
-from app import db, InvalidMediaPathException
+from app import db
 from app.common.site.media import media_infos_by_req, make_media_file
 from . import bp
 
@@ -13,14 +13,11 @@ def bad_request_error(error):
 def not_found_error(error):
     media_infos = media_infos_by_req(request.path)
     if media_infos:
-        try:
-            path, name, mimetype, bin = make_media_file(**media_infos)
-            response = helpers.make_response(bin)
-            if media_infos['group'] == 'photo':
-                response.headers['Content-type'] = mimetype
-            return response
-        except InvalidMediaPathException as e:
-            return render_template('error/400.html'), 400
+        path, name, mimetype, bin = make_media_file(**media_infos)
+        response = helpers.make_response(bin)
+        if media_infos['group'] == 'photo':
+            response.headers['Content-type'] = mimetype
+        return response
 
     #if wants_json_response():
     #    return api_error_response(404)
