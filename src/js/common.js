@@ -18,34 +18,3 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
-
-var locale = document.getElementsByTagName('html')[0].getAttribute('lang');
-
-var translations = {
-  en: require('./translations/en-message.json'),
-  ja: require('./translations/ja-message.json'),
-};
-
-var moment = require('moment');
-if (locale !== 'en') {
-  require('moment/locale/' + locale);
-  moment.locale(locale);
-}
-
-// axios を require してインスタンスを生成する
-const axiosBase = require('axios');
-const axios = axiosBase.create({
-  baseURL: '/',
-  headers: {
-    'ContentType': 'application/json',
-    'X-Requested-With': 'XMLHttpRequest',
-    'Accept-Language': locale
-  },
-  responseType: 'json'
-});
-
-exports.locale = locale;
-exports.translations = translations;
-exports.moment = moment;
-exports.axios = axios;
-

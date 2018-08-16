@@ -1,39 +1,12 @@
 'use strict';
 
+const lib = require('./lib.js');
+const axios = lib.axios;
+const Vue = lib.Vue;
+const i18n = lib.i18n;
+const site = lib.site;
 const util = require('./util.js');
-const site = require('./site.js');
 const common = require('./common.js');
-const locale = common.locale;
-const translations = common.translations;
-const moment = common.moment;
-const axios = common.axios;
-
-var Vue = require('vue');
-
-var Buefy = require('buefy');
-Vue.use(Buefy.default);
-//import 'buefy/lib/buefy.css'
-//Vue.component(Buefy.default.Loading.name, Buefy.default.Loading);
-
-import VueI18n from 'vue-i18n';
-Vue.use(VueI18n);
-var i18n = new VueI18n({
-  locale: locale,
-  fallbackLocale: 'en',
-  messages: translations
-});
-
-Vue.filter('moment', function (date) {
-  return moment(date).format('LLL');
-});
-
-Vue.mixin({
-  methods: {
-    siteUri: site.uri,
-    mediaUri: site.mediaUri,
-    getCurrentUser: site.getCurrentUser
-  }
-});
 
 var VueRouter = require('vue-router');
 Vue.use(VueRouter);
@@ -302,6 +275,14 @@ var router = new VueRouter({
 //    }
 //  }
 //}
+
+Vue.mixin({
+  methods: {
+    siteUri: site.uri,
+    mediaUri: site.mediaUri,
+    getCurrentUser: site.getCurrentUser
+  }
+});
 
 // ルーターのインスタンスをrootとなるVueインスタンスに渡します
 var app = new Vue({
